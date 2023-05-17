@@ -53,10 +53,15 @@ function PageSelector() {
     }
 }
 
+function ButtonPageDemo() {
+    return <button>react demo page</button>
+}
+
 function App() {
     return (
         <>
             <div className="container" style={containerStyle}>
+                <ButtonPageDemo />
                 <PageSelector />
             </div>
         </>
