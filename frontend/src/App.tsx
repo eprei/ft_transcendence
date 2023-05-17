@@ -69,12 +69,12 @@ function WelcomePage() {
     )
 }
 
-function PageSelector() {
-    let selector_page = 'page_welcome'
+function PageSelector({ actualPage }) {
+    console.log('page selector bar: ' + actualPage)
 
-    if (selector_page == 'demo') {
+    if (actualPage == 'demo') {
         return <DemoReactVite />
-    } else if (selector_page == 'page_welcome') {
+    } else if (actualPage == 'welcome') {
         return <WelcomePage />
     }
 }
@@ -87,9 +87,25 @@ function ButtonPageWelcome() {
     return <button>welcome page</button>
 }
 
-function NavigationBar() {
+function NavigationBar({ actualPage, setActualPage }) {
+    console.log('navigation bar: ' + actualPage)
     return (
         <>
+            <input
+                type="button"
+                value="demo"
+                onClick={(e) => setActualPage('demo')}
+            />
+            <input
+                type="button"
+                value="welcome"
+                onClick={(e) => setActualPage('welcome')}
+            />
+            <input
+                type="button"
+                value="empty page"
+                onClick={(e) => setActualPage('empty')}
+            />
             <ButtonPageDemo />
             <ButtonPageWelcome />
         </>
@@ -97,11 +113,15 @@ function NavigationBar() {
 }
 
 function App() {
+    const [actualPage, setActualPage] = useState('demo')
     return (
         <>
             <div className="container" style={containerStyle}>
-                <NavigationBar />
-                <PageSelector />
+                <NavigationBar
+                    actualPage={actualPage}
+                    setActualPage={setActualPage}
+                />
+                <PageSelector actualPage={actualPage} />
             </div>
         </>
     )
