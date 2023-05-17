@@ -79,14 +79,6 @@ function PageSelector({ actualPage }) {
     }
 }
 
-function ButtonPageDemo() {
-    return <button>react demo page</button>
-}
-
-function ButtonPageWelcome() {
-    return <button>welcome page</button>
-}
-
 function NavigationBar({ actualPage, setActualPage }) {
     console.log('navigation bar: ' + actualPage)
     return (
@@ -106,8 +98,6 @@ function NavigationBar({ actualPage, setActualPage }) {
                 value="empty page"
                 onClick={(e) => setActualPage('empty')}
             />
-            <ButtonPageDemo />
-            <ButtonPageWelcome />
         </>
     )
 }
