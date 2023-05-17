@@ -45,11 +45,37 @@ function DemoReactVite() {
     )
 }
 
+function WelcomePage() {
+    return (
+        <>
+            <form>
+                <input
+                    placeholder="username..."
+                    type="text"
+                    required
+                    minlength="4"
+                    maxlength="20"
+                />
+                <input
+                    placeholder="email address..."
+                    type="text"
+                    required
+                    minlength="4"
+                    maxlength="20"
+                />
+                <input type="submit" />
+            </form>
+        </>
+    )
+}
+
 function PageSelector() {
-    let selector_page = 'demo'
+    let selector_page = 'page_welcome'
 
     if (selector_page == 'demo') {
         return <DemoReactVite />
+    } else if (selector_page == 'page_welcome') {
+        return <WelcomePage />
     }
 }
 
