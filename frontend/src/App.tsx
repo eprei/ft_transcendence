@@ -45,11 +45,15 @@ function DemoReactVite() {
     )
 }
 
+function PageSelector() {
+    return <DemoReactVite />
+}
+
 function App() {
     return (
         <>
             <div className="container" style={containerStyle}>
-                <DemoReactVite />
+                <PageSelector />
             </div>
         </>
     )
