@@ -46,7 +46,11 @@ function DemoReactVite() {
 }
 
 function PageSelector() {
-    return <DemoReactVite />
+    let selector_page = 'demo'
+
+    if (selector_page == 'demo') {
+        return <DemoReactVite />
+    }
 }
 
 function App() {
