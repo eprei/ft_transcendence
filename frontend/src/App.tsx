@@ -53,15 +53,15 @@ function WelcomePage() {
                     placeholder="username..."
                     type="text"
                     required
-                    minlength="4"
-                    maxlength="20"
+                    minLength="4"
+                    maxLength="20"
                 />
                 <input
                     placeholder="email address..."
                     type="text"
                     required
-                    minlength="4"
-                    maxlength="20"
+                    minLength="4"
+                    maxLength="20"
                 />
                 <input type="submit" />
             </form>
