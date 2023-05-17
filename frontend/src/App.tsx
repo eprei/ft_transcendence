@@ -61,12 +61,20 @@ function ButtonPageWelcome() {
     return <button>welcome page</button>
 }
 
+function NavigationBar() {
+    return (
+        <>
+            <ButtonPageDemo />
+            <ButtonPageWelcome />
+        </>
+    )
+}
+
 function App() {
     return (
         <>
             <div className="container" style={containerStyle}>
-                <ButtonPageDemo />
-                <ButtonPageWelcome />
+                <NavigationBar />
                 <PageSelector />
             </div>
         </>
