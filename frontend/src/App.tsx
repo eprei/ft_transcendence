@@ -72,11 +72,17 @@ function WelcomePage() {
 function PageSelector({ actualPage }) {
     console.log('page selector bar: ' + actualPage)
 
-    if (actualPage == 'demo') {
-        return <DemoReactVite />
-    } else if (actualPage == 'welcome') {
-        return <WelcomePage />
-    }
+    return (
+        <>
+            {actualPage == 'demo' && <DemoReactVite />}
+            {actualPage == 'welcome' && <WelcomePage />}
+        </>
+    )
+    // if (actualPage == 'demo') {
+    //     return <DemoReactVite />
+    // } else if (actualPage == 'welcome') {
+    //     return <WelcomePage />
+    // }
 }
 
 function NavigationBar({ actualPage, setActualPage }) {
