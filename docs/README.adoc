@@ -232,3 +232,34 @@ rectangle {
 	Page4 --> Navbar
 }
 ....
+
+== Assets
+
+image:../frontend/src/assets/icon-defeats.svg[Static, 20%]
+image:../frontend/src/assets/icon-send_message.svg[Static, 20%]
+image:../frontend/src/assets/icon-add_friend.svg[Static, 20%]
+image:../frontend/src/assets/icon-invite_to_play.svg[Static, 20%]
+image:../frontend/src/assets/icon-edit_profile.svg[Static, 20%]
+image:../frontend/src/assets/icon-checkbox.svg[Static, 20%]
+image:../frontend/src/assets/icon-block_user.svg[Static, 20%]
+image:../frontend/src/assets/icon-victoires.svg[Static, 20%]
+image:../frontend/src/assets/42.svg[Static, 20%]
+image:../frontend/src/assets/icon-blue_check.svg[Static, 20%]
+image:../frontend/src/assets/icon-message.svg[Static, 20%]
+image:../frontend/src/assets/icon-view_profile.svg[Static, 20%]
+
+image::../frontend/src/assets/space-background.webp[]
+
+image::../frontend/src/assets/favicon/favicon-16x16.png[]
+
+image::../frontend/src/assets/favicon/favicon.ico[]
+
+image::../frontend/src/assets/favicon/favicon-android-chrome-192x192.png[]
+
+image::../frontend/src/assets/favicon/favicon-android-chrome-512x512.png[]
+
+image::../frontend/src/assets/favicon/favicon-apple-touch-icon.png[]
+
+image::../frontend/src/assets/favicon/favicon-32x32.png[]
+
+image::../frontend/src/assets/bg-nebula.png[]
