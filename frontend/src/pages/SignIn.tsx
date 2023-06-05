@@ -1,12 +1,9 @@
+import * as React from 'react'
+
 import SignInForm from '../components/signIn/Form'
 
 const Product = () => {
-    return (
-        <>
-            <h1>Sign in</h1>
-            <SignInForm />
-        </>
-    )
+    return <SignInForm />
 }
 
 export default Product
