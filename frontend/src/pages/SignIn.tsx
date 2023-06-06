@@ -1,4 +1,3 @@
-import Field from './../components/signIn/Field.tsx'
 import Form from './../components/signIn/Form.tsx'
 
 const Product = () => {
