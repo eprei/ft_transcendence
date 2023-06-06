@@ -1,10 +1,12 @@
 import styles from './Form.module.css'
+import Field from './Field.tsx'
 
 const Form = () => {
     return (
         <>
-            <h1>paul</h1>
-            <p className={styles.para}>hello world</p>
+            <form className={styles.signInForm}>
+                <Field />
+            </form>
         </>
     )
 }
