@@ -1,3 +1,27 @@
 = Cosmic pong
 
 Final project of the common core of school 42
+
+== API 42
+
+. get the token
++
+[,bash]
+----
+curl \
+  --request POST \
+  --data "grant_type=client_credentials" \
+  --data "client_id=${FT_UID}" \
+  --data "client_secret=${FT_SECRET}" \
+  https://api.intra.42.fr/oauth/token \
+  > token_info.json \
+  && export FT_TOKEN=$(jq .access_token token_info.json)
+----
+. use the token
++
+[,bash]
+----
+curl \
+  --header "Authorization: Bearer ${FT_TOKEN}" \
+  https://api.intra.42.fr/v2/users
+----
