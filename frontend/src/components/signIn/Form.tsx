@@ -5,7 +5,8 @@ const Form = () => {
     return (
         <>
             <form className={styles.signInForm}>
-                <Field />
+                <Field fieldName="Name" />
+                <Field fieldName="Age" />
             </form>
         </>
     )
