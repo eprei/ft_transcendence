@@ -1,5 +1,9 @@
+function printNumber(number: number): void {
+    console.log('number :' + number)
+}
+
 function printArray(listNumbers: number[]): void {
-    listNumbers.forEach((element) => console.log('list number: ' + element))
+    listNumbers.forEach(printNumber)
 }
 
 function addNumbers(a: number, b: number): number {
