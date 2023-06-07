@@ -8,15 +8,24 @@
     <body>
         <div id="root"></div>
         <h1>Number guessing game</h1>
+
         <p>
             We have selected a random number between 1 and 100. See if you can
             guess it in 10 turns or fewer. We'll tell you if your guess was too
             high or too low.
         </p>
+
         <label> Enter a guess: </label>
 
-        <input name="numberField" />
-        <input type="submit" value="Submit guess" />
+        <input
+            type="number"
+            name="guessNumber"
+            placeholder="Enter a number"
+            min="0"
+            max="100"
+        />
+        <input type="submit" name="submitButton" value="Submit guess" />
+
         <script src="dist/main.js"></script>
     </body>
 </html>
