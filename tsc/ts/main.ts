@@ -3,7 +3,7 @@ const numberField: any = document.querySelector('#guessNumber')
 const buttonSubmit = document.querySelector('#submitButton')
 
 const numberToGuess: number = 42
-let numberList: number[]
+let numberList: number[] = []
 
 function getNumberField(): number {
     return numberField.valueAsNumber
