@@ -23,7 +23,7 @@ format:
 	docker run \
 	--rm \
 	--volume $(shell pwd):/app tgrivel/prettier \
-	--write {backend,frontend} \
+	--write tsc \
 	--config .prettierrc \
 	--ignore-path .prettierignore
 
