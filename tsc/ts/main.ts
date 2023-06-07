@@ -2,12 +2,15 @@ const output = document.querySelector('#scriptOutput')
 const numberField: any = document.querySelector('#guessNumber')
 const buttonSubmit = document.querySelector('#submitButton')
 
-const numberToGuess: number = 42
 let numberList: number[] = []
 let counterTry: number = 0
 
 function getNumberField(): number {
     return numberField.valueAsNumber
+}
+
+function getRandomNumber(max: number): number {
+    return Math.floor(Math.random() * max)
 }
 
 function handleSubmit(): void {
@@ -24,4 +27,6 @@ function handleSubmit(): void {
     console.log('try number ' + counterTry)
 }
 
+const numberToGuess: number = getRandomNumber(100)
+console.log(numberToGuess)
 buttonSubmit.addEventListener('click', handleSubmit)
