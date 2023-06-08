@@ -1,4 +1,11 @@
-const output: HTMLParagraphElement = document.querySelector('#scriptOutput')
+/* output paragraph */
+const outputPrevious: HTMLParagraphElement =
+    document.querySelector('#outputPrevious')
+const outputResult: HTMLParagraphElement =
+    document.querySelector('#outputResult')
+const outputUpDown: HTMLParagraphElement =
+    document.querySelector('#outputUpDown')
+
 const numberFieldInput: HTMLInputElement =
     document.querySelector('#guessNumber')
 const buttonSubmit: HTMLButtonElement = document.querySelector('#submitButton')
@@ -17,16 +24,27 @@ function getRandomNumber(max: number): number {
 function handleSubmit(): void {
     ++counterTry
 
-    let outputText: string = ''
     const numberField: number = getNumberField()
 
-    if (numberField < numberToGuess) outputText = 'too low'
-    else if (numberField > numberToGuess) outputText = 'too high'
-    else if (numberField === numberToGuess) outputText = 'win'
+    if (numberField !== numberToGuess) {
+        outputResult.textContent = 'Wrong!'
+        outputResult.style.backgroundColor = 'red'
+        numberFieldInput.focus()
+        if (numberField > numberToGuess)
+            outputUpDown.textContent = 'Last guess was too high!!'
+        else outputUpDown.textContent = 'Last guess was too low!!'
+    } else {
+        numberFieldInput.disabled = true
+        buttonSubmit.disabled = true
+        numberFieldInput.value = ''
+        outputUpDown.textContent = ''
+        outputResult.textContent = 'Congratulations! You got it right!'
+        outputResult.style.backgroundColor = 'green'
+    }
+
     numberList.push(numberField)
 
-    outputText += ' ' + numberList
-    output.textContent = outputText
+    outputPrevious.textContent = 'Previous guesses: ' + numberList.toString()
     console.log('try number ' + counterTry)
 }
 
