@@ -13,6 +13,7 @@ const inputSubmit: HTMLButtonElement = document.querySelector('#submitButton')
 
 let numberList: number[] = []
 let counterTry: number = 0
+let numberToGuess: number = 0
 
 function getNumberField(): number {
     return inputNumberField.valueAsNumber
@@ -72,6 +73,10 @@ function handleSubmit(): void {
     console.log('try number ' + counterTry)
 }
 
-const numberToGuess: number = getRandomNumber(100)
-console.log(numberToGuess)
+function startGame(): void {
+    numberToGuess = getRandomNumber(100)
+    console.log('Number to guess: ' + numberToGuess)
+}
+
 inputSubmit.addEventListener('click', handleSubmit)
+startGame()
