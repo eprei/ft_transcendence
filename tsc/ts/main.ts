@@ -1,19 +1,21 @@
 /* output paragraph */
-const outputPrevious: HTMLParagraphElement =
+const outputPrevious: HTMLParagraphElement | null =
     document.querySelector('#outputPrevious')
-const outputResult: HTMLParagraphElement =
+const outputResult: HTMLParagraphElement | null =
     document.querySelector('#outputResult')
-const outputUpDown: HTMLParagraphElement =
+const outputUpDown: HTMLParagraphElement | null =
     document.querySelector('#outputUpDown')
 
 /* input elements */
-const inputNumberField: HTMLInputElement =
+const inputNumberField: HTMLInputElement | null =
     document.querySelector('#guessNumber')
-const inputSubmit: HTMLButtonElement = document.querySelector('#submitButton')
+const inputSubmit: HTMLButtonElement | null =
+    document.querySelector('#submitButton')
 
 /* constants */
 const MAX_ATTEMPTS: number = 10
 const MAX_NUMBER: number = 100
+const ERROR_DOCUMENT_QUERY: string = 'Error: Document query'
 
 let numberList: number[] = []
 let counterTry: number = 0
@@ -99,5 +101,18 @@ function startGame(): void {
     console.log('Number to guess: ' + numberToGuess)
 }
 
+/* check document query */
+if (
+    inputSubmit == null ||
+    inputNumberField == null ||
+    outputUpDown == null ||
+    outputResult == null ||
+    outputPrevious == null
+) {
+    alert(ERROR_DOCUMENT_QUERY)
+    throw ERROR_DOCUMENT_QUERY
+}
+
 inputSubmit.addEventListener('click', handleSubmit)
+
 startGame()
