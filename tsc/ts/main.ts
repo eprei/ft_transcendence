@@ -6,15 +6,16 @@ const outputResult: HTMLParagraphElement =
 const outputUpDown: HTMLParagraphElement =
     document.querySelector('#outputUpDown')
 
-const numberFieldInput: HTMLInputElement =
+/* input elements */
+const inputNumberField: HTMLInputElement =
     document.querySelector('#guessNumber')
-const buttonSubmit: HTMLButtonElement = document.querySelector('#submitButton')
+const inputSubmit: HTMLButtonElement = document.querySelector('#submitButton')
 
 let numberList: number[] = []
 let counterTry: number = 0
 
 function getNumberField(): number {
-    return numberFieldInput.valueAsNumber
+    return inputNumberField.valueAsNumber
 }
 
 function getRandomNumber(max: number): number {
@@ -29,14 +30,14 @@ function handleSubmit(): void {
     if (numberField !== numberToGuess) {
         outputResult.textContent = 'Wrong!'
         outputResult.style.backgroundColor = 'red'
-        numberFieldInput.focus()
+        inputNumberField.focus()
         if (numberField > numberToGuess)
             outputUpDown.textContent = 'Last guess was too high!!'
         else outputUpDown.textContent = 'Last guess was too low!!'
     } else {
-        numberFieldInput.disabled = true
-        buttonSubmit.disabled = true
-        numberFieldInput.value = ''
+        inputNumberField.disabled = true
+        inputSubmit.disabled = true
+        inputNumberField.value = ''
         outputUpDown.textContent = ''
         outputResult.textContent = 'Congratulations! You got it right!'
         outputResult.style.backgroundColor = 'green'
@@ -50,4 +51,4 @@ function handleSubmit(): void {
 
 const numberToGuess: number = getRandomNumber(100)
 console.log(numberToGuess)
-buttonSubmit.addEventListener('click', handleSubmit)
+inputSubmit.addEventListener('click', handleSubmit)
