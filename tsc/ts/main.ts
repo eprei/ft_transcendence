@@ -11,6 +11,10 @@ const inputNumberField: HTMLInputElement =
     document.querySelector('#guessNumber')
 const inputSubmit: HTMLButtonElement = document.querySelector('#submitButton')
 
+/* constants */
+const MAX_ATTEMPTS: number = 10
+const MAX_NUMBER: number = 100
+
 let numberList: number[] = []
 let counterTry: number = 0
 let numberToGuess: number = 0
@@ -65,7 +69,7 @@ function handleSubmit(): void {
     const numberField: number = getNumberField()
 
     if (numberField !== numberToGuess) {
-        if (counterTry === 10) {
+        if (counterTry === MAX_ATTEMPTS) {
             gameOver()
             return
         }
@@ -91,7 +95,7 @@ function startGame(): void {
     numberList = []
     counterTry = 0
 
-    numberToGuess = getRandomNumber(100)
+    numberToGuess = getRandomNumber(MAX_NUMBER)
     console.log('Number to guess: ' + numberToGuess)
 }
 
