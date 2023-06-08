@@ -1,4 +1,4 @@
-const output = document.querySelector('#scriptOutput')
+const output: HTMLParagraphElement = document.querySelector('#scriptOutput')
 const numberFieldInput: HTMLInputElement =
     document.querySelector('#guessNumber')
 const buttonSubmit = document.querySelector('#submitButton')
