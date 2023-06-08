@@ -17,14 +17,16 @@ function getRandomNumber(max: number): number {
 function handleSubmit(): void {
     ++counterTry
 
+    let outputText: string = ''
     const numberField: number = getNumberField()
 
-    if (numberField < numberToGuess) output.textContent = 'too low'
-    else if (numberField > numberToGuess) output.textContent = 'too high'
-    else if (numberField === numberToGuess) output.textContent = 'win'
+    if (numberField < numberToGuess) outputText = 'too low'
+    else if (numberField > numberToGuess) outputText = 'too high'
+    else if (numberField === numberToGuess) outputText = 'win'
     numberList.push(numberField)
 
-    console.log(numberList)
+    outputText += ' ' + numberList
+    output.textContent = outputText
     console.log('try number ' + counterTry)
 }
 
