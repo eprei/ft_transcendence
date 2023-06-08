@@ -1,5 +1,5 @@
 const output = document.querySelector('#scriptOutput')
-const numberField: any = document.querySelector('#guessNumber')
+const numberField: HTMLInputElement = document.querySelector('#guessNumber')
 const buttonSubmit = document.querySelector('#submitButton')
 
 let numberList: number[] = []
