@@ -29,12 +29,22 @@ function endGame(): void {
     outputUpDown.textContent = ''
 }
 
+function gameOver(): void {
+    outputResult.textContent = 'GAME OVER'
+    outputResult.style.backgroundColor = 'red'
+    endGame()
+}
+
 function handleSubmit(): void {
     ++counterTry
 
     const numberField: number = getNumberField()
 
     if (numberField !== numberToGuess) {
+        if (counterTry === 10) {
+            gameOver()
+            return
+        }
         outputResult.textContent = 'Wrong!'
         outputResult.style.backgroundColor = 'red'
         inputNumberField.focus()
