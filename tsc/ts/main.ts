@@ -22,6 +22,13 @@ function getRandomNumber(max: number): number {
     return Math.floor(Math.random() * max)
 }
 
+function endGame(): void {
+    inputNumberField.disabled = true
+    inputSubmit.disabled = true
+    inputNumberField.value = ''
+    outputUpDown.textContent = ''
+}
+
 function handleSubmit(): void {
     ++counterTry
 
@@ -35,10 +42,7 @@ function handleSubmit(): void {
             outputUpDown.textContent = 'Last guess was too high!!'
         else outputUpDown.textContent = 'Last guess was too low!!'
     } else {
-        inputNumberField.disabled = true
-        inputSubmit.disabled = true
-        inputNumberField.value = ''
-        outputUpDown.textContent = ''
+        endGame()
         outputResult.textContent = 'Congratulations! You got it right!'
         outputResult.style.backgroundColor = 'green'
     }
