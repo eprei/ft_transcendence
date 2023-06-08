@@ -1,12 +1,13 @@
 const output = document.querySelector('#scriptOutput')
-const numberField: HTMLInputElement = document.querySelector('#guessNumber')
+const numberFieldInput: HTMLInputElement =
+    document.querySelector('#guessNumber')
 const buttonSubmit = document.querySelector('#submitButton')
 
 let numberList: number[] = []
 let counterTry: number = 0
 
 function getNumberField(): number {
-    return numberField.valueAsNumber
+    return numberFieldInput.valueAsNumber
 }
 
 function getRandomNumber(max: number): number {
