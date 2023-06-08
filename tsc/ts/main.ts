@@ -24,7 +24,20 @@ function getRandomNumber(max: number): number {
 }
 
 function resetGame(): void {
-    console.log('reset game')
+    /* enable inputs */
+    inputNumberField.disabled = false
+    inputSubmit.disabled = false
+
+    /* remove the reset button */
+    const inputButtonReset: HTMLInputElement =
+        document.querySelector('#resetButton')
+    inputButtonReset.parentNode.removeChild(inputButtonReset)
+
+    /* empty the output content */
+    outputUpDown.textContent = ''
+    outputResult.textContent = ''
+    outputPrevious.textContent = ''
+    startGame()
 }
 
 function endGame(): void {
@@ -35,6 +48,7 @@ function endGame(): void {
 
     const inputButtonReset = document.createElement('button')
     inputButtonReset.textContent = 'Start a new game'
+    inputButtonReset.id = 'resetButton'
     inputButtonReset.addEventListener('click', resetGame)
     document.body.appendChild(inputButtonReset)
 }
@@ -70,10 +84,13 @@ function handleSubmit(): void {
     numberList.push(numberField)
 
     outputPrevious.textContent = 'Previous guesses: ' + numberList.toString()
-    console.log('try number ' + counterTry)
 }
 
 function startGame(): void {
+    /* set null values */
+    numberList = []
+    counterTry = 0
+
     numberToGuess = getRandomNumber(100)
     console.log('Number to guess: ' + numberToGuess)
 }
