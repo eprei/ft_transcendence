@@ -22,11 +22,20 @@ function getRandomNumber(max: number): number {
     return Math.floor(Math.random() * max)
 }
 
+function resetGame(): void {
+    console.log('reset game')
+}
+
 function endGame(): void {
     inputNumberField.disabled = true
     inputSubmit.disabled = true
     inputNumberField.value = ''
     outputUpDown.textContent = ''
+
+    const inputButtonReset = document.createElement('button')
+    inputButtonReset.textContent = 'Start a new game'
+    inputButtonReset.addEventListener('click', resetGame)
+    document.body.appendChild(inputButtonReset)
 }
 
 function gameOver(): void {
