@@ -1,7 +1,7 @@
 const output: HTMLParagraphElement = document.querySelector('#scriptOutput')
 const numberFieldInput: HTMLInputElement =
     document.querySelector('#guessNumber')
-const buttonSubmit = document.querySelector('#submitButton')
+const buttonSubmit: HTMLButtonElement = document.querySelector('#submitButton')
 
 let numberList: number[] = []
 let counterTry: number = 0
