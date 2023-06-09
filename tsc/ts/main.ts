@@ -1,3 +1,7 @@
+interface Joke {
+    joke: string
+}
+
 function putJoke(paraJoke: HTMLParagraphElement): void {
     const url: string = 'https://v2.jokeapi.dev/joke/Programming?type=single'
 
@@ -8,7 +12,7 @@ function putJoke(paraJoke: HTMLParagraphElement): void {
             }
             return myResponse.json()
         })
-        .then((myJson) => {
+        .then((myJson: Joke) => {
             paraJoke.textContent = myJson.joke
         })
 
