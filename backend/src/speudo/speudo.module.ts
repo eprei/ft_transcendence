@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common'
+import { SpeudoController } from './speudo.controller'
 
-@Module({})
+@Module({
+    controllers: [SpeudoController],
+})
 export class SpeudoModule {}
