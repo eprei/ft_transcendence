@@ -1,7 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm'
 
 @Entity()
-export class Speudo {
+export class Speudo extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
