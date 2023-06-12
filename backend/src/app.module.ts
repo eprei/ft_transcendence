@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config'
 import { PlayerModule } from './player/player.module'
 import { Player } from './typeorm/Player'
 import { SpeudoModule } from './speudo/speudo.module'
+import { Speudo } from './entity/Speudo'
 
 @Module({
     imports: [
@@ -15,7 +16,7 @@ import { SpeudoModule } from './speudo/speudo.module'
             url: process.env.DATABASE_URL,
             autoLoadEntities: true,
             synchronize: true,
-            entities: [Player],
+            entities: [Player, Speudo],
         }),
         PlayerModule,
         SpeudoModule,
