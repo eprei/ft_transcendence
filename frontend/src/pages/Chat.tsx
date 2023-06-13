@@ -1,35 +1,18 @@
-import Navbar from '../components/navigation/Navbar'
+import styles from '../components/chat/Chat.module.css'
+import ChannelBox from '../components/chat/ChannelBox.tsx'
 import ChatBox from '../components/chat/ChatBox'
+import UserList from '../components/chat/UserList.tsx'
 
 const Chat = () => {
     return (
         <>
-            <h1>Chat</h1>
-			<ChatBox />
+            <div className={styles.chatContainer}>
+                <ChannelBox />
+                <ChatBox />
+                <UserList />
+            </div>
         </>
     )
 }
-
-{/* //  return (
-//     <div>
-//       <Header />
-//       <Row>
-//         <Col span={20}>
-//           <ChatFeed
-//             userName={userName}
-//             currentChannelId={currentChannelId}
-//             setCurrentChannelId={setCurrentChannelId}
-//           />
-//         </Col>
-//         <Col span={4}>
-//           <SideBar
-//             userName={userName}
-//             currentChannelId={currentChannelId}
-//             setCurrentChannelId={setCurrentChannelId}
-//           />
-//         </Col>
-//       </Row>
-//     </div>
-//   ); */}
 
 export default Chat

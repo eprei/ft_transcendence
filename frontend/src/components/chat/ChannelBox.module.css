@@ -1,0 +1,15 @@
+/* Channel Box */
+.chBox {
+    height: 70vh;
+    min-width: 18rem;
+    margin: 15px;
+    border-radius: 25px;
+    /* background-color: transparent; */
+    background: var(--color-black-transparent);
+    padding: 45px;
+
+    opacity: 1;
+    width: 20%;
+    overflow: scroll;
+    /* border: 4px groove var(--color-mid-green); */
+}

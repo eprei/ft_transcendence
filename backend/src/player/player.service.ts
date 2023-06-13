@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Player } from 'src/typeorm/Player'
+import { Player } from 'src/typeorm/player.entity'
 import { CreatePlayerDto } from './dto/create-player.dto'
 import { Repository } from 'typeorm'
 
@@ -8,8 +8,9 @@ import { Repository } from 'typeorm'
 export class PlayerService {
     constructor(
         @InjectRepository(Player)
-        private readonly playerRepository: Repository<Player>
+        private readonly playerRepository: Repository<Player> // <entidadQCreamos>
     ) {}
+
     create(createPlayerDto: CreatePlayerDto) {
         const newPlayer = this.playerRepository.create(createPlayerDto)
         return this.playerRepository.save(newPlayer)

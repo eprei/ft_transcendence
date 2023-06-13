@@ -1,4 +1,5 @@
 import { IsEmail, IsNotEmpty, Allow } from 'class-validator'
+// import { Channel } from '../../types/Channel'
 
 export class CreatePlayerDto {
     id: number
@@ -10,7 +11,7 @@ export class CreatePlayerDto {
     @IsEmail()
     email: string
 
-    @Allow()
+	@Allow()
     avatarUrl: string
 
     nbVictory: number
@@ -18,4 +19,5 @@ export class CreatePlayerDto {
     totalPlay: number
 
     xp: number
+    // createdChannels: Channel[];
 }
