@@ -3,3 +3,11 @@
     height: 10vh;
     background-color: red;
 }
+
+.paddle {
+    position: absolute;
+    top: 50vh;
+    width: 10vh;
+    height: 20vh;
+    background-color: red;
+}
