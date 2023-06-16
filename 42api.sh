@@ -49,10 +49,16 @@ get_all_campus () {
 	jq < "${FILE_CAMPUS}" > clean-"${FILE_CAMPUS}"
 }
 
+get_lausanne_id () {
+	export LAUSANNE_ID=$(jq  '.[] | select(.name=="Lausanne") | .id' \
+		< "${FILE_CAMPUS}")
+}
+
 main () {
 	check_environment_variables
 	get_ft_token
 	get_all_campus
+	get_lausanne_id
 }
 
 main
