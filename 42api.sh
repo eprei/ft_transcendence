@@ -1,4 +1,5 @@
 FILE_TOKEN_INFO="token_info.json"
+FILE_CAMPUS="campus.json"
 
 check_environment_variables () {
 	if [ -z "$FT_UID" ]
@@ -36,9 +37,22 @@ get_ft_token () {
 	export FT_TOKEN=$(jq .access_token "${FILE_TOKEN_INFO}" | tr -d '"''"')
 }
 
+get_all_campus () {
+	if [ ! -e "${FILE_TOKEN_INFO}" ]
+	then
+		curl \
+		  --header "Authorization: Bearer ${FT_TOKEN}" \
+		  https://api.intra.42.fr/v2/campus \
+		  > "${FILE_CAMPUS}"
+	fi
+
+	jq < "${FILE_CAMPUS}" > clean-"${FILE_CAMPUS}"
+}
+
 main () {
 	check_environment_variables
 	get_ft_token
+	get_all_campus
 }
 
 main
