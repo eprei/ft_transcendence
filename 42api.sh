@@ -2,6 +2,7 @@
 
 FILE_TOKEN_INFO="token_info.json"
 FILE_CAMPUS="campus.json"
+FILE_LAUSANNE_USERS="lausanne_users.json"
 
 check_environment_variables () {
 	if [ -z "$FT_UID" ]
@@ -56,11 +57,31 @@ get_lausanne_id () {
 		< "${FILE_CAMPUS}")
 }
 
+get_lausanne_users () {
+	echo a $LAUSANNE_ID
+	if [ ! -e "${FILE_LAUSANNE_USERS}" ]
+	then
+		curl \
+		  --header "Authorization: Bearer ${FT_TOKEN}" \
+		 "https://api.intra.42.fr/v2/users?campus_id=47" \
+		  > "${FILE_LAUSANNE_USERS}"
+
+		  # curl \
+		  # --header "Authorization: Bearer ${FT_TOKEN}" \
+		  # https://api.intra.42.fr/v2/users\?campus_id\=47
+
+	fi
+
+	echo asdf
+	jq < "${FILE_LAUSANNE_USERS}" > clean-"${FILE_LAUSANNE_USERS}"
+}
+
 main () {
 	check_environment_variables
 	get_ft_token
 	get_all_campus
 	get_lausanne_id
+	get_lausanne_users
 }
 
 main
