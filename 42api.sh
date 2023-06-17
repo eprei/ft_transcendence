@@ -43,7 +43,7 @@ get_ft_token () {
 }
 
 get_all_campus () {
-	if [ ! -e "${FILE_TOKEN_INFO}" ]
+	if [ ! -e "${FILE_CAMPUS}" ]
 	then
 		curl \
 		  --header "Authorization: Bearer ${FT_TOKEN}" \
