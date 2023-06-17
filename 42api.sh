@@ -4,6 +4,8 @@ FILE_TOKEN_INFO="token_info.json"
 FILE_CAMPUS="campus.json"
 FILE_LAUSANNE_USERS="lausanne_users.json"
 
+export $(cat env/42_api.env)
+
 check_environment_variables () {
 	if [ -z "$FT_UID" ]
 	then
