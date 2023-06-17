@@ -74,7 +74,6 @@ get_lausanne_users () {
 
 	fi
 
-	echo asdf
 	jq < "${FILE_LAUSANNE_USERS}" > clean-"${FILE_LAUSANNE_USERS}"
 }
 
