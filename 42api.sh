@@ -65,7 +65,7 @@ get_lausanne_users () {
 	then
 		curl \
 		  --header "Authorization: Bearer ${FT_TOKEN}" \
-		 "https://api.intra.42.fr/v2/users?campus_id=47" \
+		 "https://api.intra.42.fr/v2/users?campus_id=${LAUSANNE_ID}" \
 		  > "${FILE_LAUSANNE_USERS}"
 
 		  # curl \
