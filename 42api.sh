@@ -1,3 +1,5 @@
+#!/bin/sh
+
 FILE_TOKEN_INFO="token_info.json"
 FILE_CAMPUS="campus.json"
 
