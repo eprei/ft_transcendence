@@ -17,7 +17,7 @@ check_environment_variables () {
 }
 
 get_ft_token () {
-	if [ ! -z "$FT_TOKEN" ]
+	if [ -n "$FT_TOKEN" ]
 	then
 		return
 	fi
