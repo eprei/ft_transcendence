@@ -26,6 +26,9 @@ build:
 	--volume $(shell pwd)/backend:/app \
 	our-backend-image \
 	npm run build
+	mkdir -p build
+	cp --recursive frontend/dist build/frontend
+	cp --recursive backend/dist build/backend
 
 env:
 	@if [ ! -d env ]; then \
