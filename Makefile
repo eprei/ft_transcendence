@@ -20,6 +20,12 @@ build:
 	--volume $(shell pwd)/frontend:/app \
 	our-frontend-image \
 	npm run build
+	docker run \
+	--rm \
+	--name back_build \
+	--volume $(shell pwd)/backend:/app \
+	our-backend-image \
+	npm run build
 
 env:
 	@if [ ! -d env ]; then \
