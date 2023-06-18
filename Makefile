@@ -13,6 +13,14 @@ start: env
 stop:
 	docker compose down
 
+build:
+	docker run \
+	--rm \
+	--name front_build \
+	--volume $(shell pwd)/frontend:/app \
+	our-frontend-image \
+	npm run build
+
 env:
 	@if [ ! -d env ]; then \
 		printf "$(GREEN)Generate environment variables\n$(DEFAULT)"; \
