@@ -84,7 +84,7 @@ kill-your-work:
 	rm -rf ./backend/node_modules
 	rm -rf ./backend/dist
 
-.PHONY: env
+.PHONY: env build
 
 # Colors
 RED     = \033[1;31m
