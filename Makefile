@@ -27,8 +27,8 @@ build:
 	our-backend-image \
 	npm run build
 	mkdir -p build
-	cp --recursive frontend/dist build/frontend
-	cp --recursive backend/dist build/backend
+	cp -R frontend/dist build/frontend
+	cp -R backend/dist build/backend
 
 env:
 	@if [ ! -d env ]; then \
