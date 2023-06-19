@@ -14,13 +14,32 @@ add_user () {
 main () {
 	logins=("epresa-c" "mpons" "rburri" "sbars" "tgrivel")
 
-	for login in "${logins[@]}"
-	do
-		add_user \
-			"${login}" \
-			"${login}@student.42lausanne.ch" \
-			"https://images.template.net/wp-content/uploads/2015/03/Pixel-Art-Mario.jpg"
-	done
+	if [ "${1}" == "add" ]
+	then
+		for login in "${logins[@]}"
+		do
+			add_user \
+				"${login}" \
+				"${login}@student.42lausanne.ch" \
+				"https://images.template.net/wp-content/uploads/2015/03/Pixel-Art-Mario.jpg"
+		done
+	elif [ "${1}" == "delete" ]
+	then
+		for login in "${logins[@]}"
+		do
+			curl http://localhost:8080/api/player/"${login}" \
+			  --request DELETE
+		done
+	fi
+
 }
 
-main
+if [ -z "${1}" ]
+then
+	printf "usage:
+sh ./script add
+sh ./script delete\n"
+	exit 1
+fi
+
+main "${1}"
