@@ -3,9 +3,9 @@ h1 {
 }
 
 .ball {
-    position: absolute;
-    top: 50vh;
-    left: 50vw;
+    position: relative;
+    top: calc(0% - 5vh);
+    left: calc(0% - 5vh);
     width: 10vh;
     height: 10vh;
     background-color: red;
