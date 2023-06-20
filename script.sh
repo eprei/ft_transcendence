@@ -1,5 +1,11 @@
 #!/bin/bash
 
+usage () {
+	printf "usage:
+sh ./script add
+sh ./script delete\n"
+}
+
 # $1: login
 # $2: email
 # $3: url
@@ -36,9 +42,7 @@ main () {
 
 if [ -z "${1}" ]
 then
-	printf "usage:
-sh ./script add
-sh ./script delete\n"
+	usage
 	exit 1
 fi
 
