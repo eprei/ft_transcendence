@@ -1,3 +1,7 @@
+h1 {
+    text-align: center;
+}
+
 .ball {
     position: absolute;
     top: 50vh;
