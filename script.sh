@@ -17,6 +17,12 @@ add_user () {
 	  --data avatarUrl="$3"
 }
 
+# $1: login
+delete_user () {
+	curl http://localhost:8080/api/player/"${1}" \
+	  --request DELETE
+}
+
 main () {
 	logins=("epresa-c" "mpons" "rburri" "sbars" "tgrivel")
 
@@ -33,8 +39,7 @@ main () {
 	then
 		for login in "${logins[@]}"
 		do
-			curl http://localhost:8080/api/player/"${login}" \
-			  --request DELETE
+			delete_user "${login}"
 		done
 	fi
 
