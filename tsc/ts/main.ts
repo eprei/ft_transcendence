@@ -53,6 +53,14 @@ class BoardGame {
 
         this.rectangle = new Rectangle(this.canvas, this.ctx, 150, 100)
         this.ball = new Ball(this.canvas, this.ctx)
+
+        this.loop(0)
+    }
+
+    private loop(time: number) {
+        console.log('loop -- ' + time)
+
+        window.requestAnimationFrame(this.loop.bind(this))
     }
 }
 
