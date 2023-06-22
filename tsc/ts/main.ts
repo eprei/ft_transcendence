@@ -32,8 +32,8 @@ class Ball {
         this._stopLeft = 0
         this._stopRight = canvaWidth - this._radius
         this._speed = 0.5
-        this._dx = 0.5
-        this._dy = 0.1
+        this._dx = -0.5
+        this._dy = 0.0
 
         this.draw()
     }
@@ -94,7 +94,7 @@ class Racket {
         this._ctx = ctx
 
         this._x = 20
-        this._y = 10
+        this._y = 95
         this._width = 10
         this._heigth = 50
         this._stopTop = 0
