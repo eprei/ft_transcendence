@@ -89,9 +89,7 @@ class BoardGame {
         })
     }
 
-    private loop(time: number) {
-        const deltaTime: number = time - this._lastTime
-        this._lastTime = time
+    private positionRectangle(deltaTime: number) {
         switch (this._direction) {
             case 'right':
                 this.rectangle.setx(
@@ -104,6 +102,14 @@ class BoardGame {
                 )
                 break
         }
+    }
+
+    private loop(time: number) {
+        const deltaTime: number = time - this._lastTime
+
+        this.positionRectangle(deltaTime)
+
+        this._lastTime = time
         this.drawAll()
         window.requestAnimationFrame(this.loop.bind(this))
     }
