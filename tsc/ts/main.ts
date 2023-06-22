@@ -1,4 +1,4 @@
-class RedBall {
+class Ball {
     private canvas: HTMLCanvasElement
     private ctx: CanvasRenderingContext2D
 
@@ -6,17 +6,17 @@ class RedBall {
         this.canvas = canvas
         this.ctx = ctx
 
-        this.drawRedBall()
+        this.drawBall()
     }
 
-    private drawRedBall() {
+    private drawBall() {
         this.ctx.fillStyle = 'red'
         this.ctx.arc(40, 20, 5, 0, Math.PI * 2, true)
         this.ctx.fill()
     }
 }
 
-class GreenRectangle {
+class Rectangle {
     private canvas: HTMLCanvasElement
     private ctx: CanvasRenderingContext2D
 
@@ -24,10 +24,10 @@ class GreenRectangle {
         this.canvas = canvas
         this.ctx = ctx
 
-        this.drawGreenRectangle()
+        this.drawRectangle()
     }
 
-    private drawGreenRectangle() {
+    private drawRectangle() {
         this.ctx.fillStyle = 'green'
         this.ctx.fillRect(20, 10, 150, 100)
     }
@@ -36,8 +36,8 @@ class GreenRectangle {
 class BoardGame {
     private canvas: HTMLCanvasElement
     private ctx: CanvasRenderingContext2D
-    private greenRectangle: GreenRectangle
-    private redBall: RedBall
+    private rectangle: Rectangle
+    private ball: Ball
 
     constructor() {
         let canvas = document.getElementById('boardGame') as HTMLCanvasElement
@@ -46,8 +46,8 @@ class BoardGame {
         this.canvas = canvas
         this.ctx = ctx
 
-        this.greenRectangle = new GreenRectangle(this.canvas, this.ctx)
-        this.redBall = new RedBall(this.canvas, this.ctx)
+        this.rectangle = new Rectangle(this.canvas, this.ctx)
+        this.ball = new Ball(this.canvas, this.ctx)
     }
 }
 
