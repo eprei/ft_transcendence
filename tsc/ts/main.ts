@@ -92,6 +92,8 @@ class BoardGame {
                 this.rectangle.updatex(this.rectangle.getx() - 0.1 * deltaTime)
                 break
         }
+        if (this.rectangle.getx() >= 100) this._direction = 'left'
+        else if (this.rectangle.getx() <= 20) this._direction = 'right'
         this.drawAll()
         window.requestAnimationFrame(this.loop.bind(this))
     }
