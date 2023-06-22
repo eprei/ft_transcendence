@@ -1,3 +1,10 @@
+interface location {
+    xmin: number
+    xmax: number
+    ymin: number
+    ymax: number
+}
+
 class Ball {
     private _ctx: CanvasRenderingContext2D
     private _x: number
@@ -38,10 +45,11 @@ class Ball {
         this._ctx.fill()
     }
 
-    public move(deltaTime: number) {
+    public move(deltaTime: number, racket: location) {
         this._x += this._dx * deltaTime * this._speed
         this._y += this._dy * deltaTime * this._speed
 
+        // walls
         if (this._y > this._stopBottom) {
             this._dy = -this._dy
             this._y = this._stopBottom
@@ -57,6 +65,16 @@ class Ball {
         if (this._x < this._stopLeft) {
             this._dx = -this._dx
             this._x = this._stopLeft
+        }
+
+        // racket
+        if (
+            racket.xmin < this._x &&
+            this._x < racket.xmax &&
+            racket.ymin < this._y &&
+            this._y < racket.ymax
+        ) {
+            this._dx = -this._dx
         }
     }
 }
@@ -96,6 +114,15 @@ class Racket {
 
     public downhill() {
         this._state = 'downhilling'
+    }
+
+    public location(): location {
+        return {
+            xmin: this._x,
+            xmax: this._x + this._width,
+            ymin: this._y,
+            ymax: this._y + this._heigth,
+        }
     }
 
     public move(deltaTime: number) {
@@ -153,7 +180,7 @@ class BoardGame {
         const deltaTime: number = time - this._lastTime
 
         this.racket.move(deltaTime)
-        this.ball.move(deltaTime)
+        this.ball.move(deltaTime, this.racket.location())
 
         this._lastTime = time
         this.drawAll()
