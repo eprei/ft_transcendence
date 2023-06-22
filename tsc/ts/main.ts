@@ -65,6 +65,7 @@ class BoardGame {
 
         this._lastTime = 0
         this._direction = 'right'
+        this.initInput()
         this.loop(0)
     }
 
@@ -74,16 +75,15 @@ class BoardGame {
         this.ball.draw()
     }
 
+    private initInput() {
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'j') this._direction = 'left'
+            if (e.key === ';') this._direction = 'right'
+        })
+    }
+
     private loop(time: number) {
         const deltaTime: number = time - this._lastTime
-        console.log(
-            'loop -- ' +
-                time +
-                ' x ' +
-                this.rectangle.getx() +
-                ' delta ' +
-                deltaTime
-        )
         this._lastTime = time
         switch (this._direction) {
             case 'right':
@@ -97,8 +97,6 @@ class BoardGame {
                 )
                 break
         }
-        if (this.rectangle.getx() >= 100) this._direction = 'left'
-        else if (this.rectangle.getx() <= 20) this._direction = 'right'
         this.drawAll()
         window.requestAnimationFrame(this.loop.bind(this))
     }
