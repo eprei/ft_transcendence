@@ -40,7 +40,7 @@ class Rectangle {
         return this._x
     }
 
-    public updatex(x: number) {
+    public setx(x: number) {
         this._x = x
     }
 }
@@ -87,12 +87,12 @@ class BoardGame {
         this._lastTime = time
         switch (this._direction) {
             case 'right':
-                this.rectangle.updatex(
+                this.rectangle.setx(
                     this.rectangle.getx() + this.speedRectangle * deltaTime
                 )
                 break
             case 'left':
-                this.rectangle.updatex(
+                this.rectangle.setx(
                     this.rectangle.getx() - this.speedRectangle * deltaTime
                 )
                 break
