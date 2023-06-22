@@ -14,37 +14,6 @@ class Ball {
     }
 }
 
-class Rectangle {
-    private ctx: CanvasRenderingContext2D
-    private _x: number
-    private _y: number
-    private _heigth: number
-    private _width: number
-
-    constructor(ctx: CanvasRenderingContext2D, width: number, heigth: number) {
-        this.ctx = ctx
-
-        this._x = 20
-        this._y = 10
-        this._width = width
-        this._heigth = heigth
-        this.draw()
-    }
-
-    public draw() {
-        this.ctx.fillStyle = 'green'
-        this.ctx.fillRect(this._x, this._y, this._width, this._heigth)
-    }
-
-    public getx(): number {
-        return this._x
-    }
-
-    public setx(x: number) {
-        this._x = x
-    }
-}
-
 class Racket {
     private _ctx: CanvasRenderingContext2D
     private _x: number
@@ -98,14 +67,10 @@ class Racket {
 }
 
 class BoardGame {
-    readonly speedRectangle: number = 0.1
-
     private ctx: CanvasRenderingContext2D
-    private rectangle: Rectangle
     private left: Racket
     private ball: Ball
     private _lastTime: number
-    private _direction: 'right' | 'left' | 'null'
     private racket: Racket
 
     constructor() {
@@ -114,58 +79,30 @@ class BoardGame {
 
         this.ctx = ctx
 
-        this.rectangle = new Rectangle(this.ctx, 10, 50)
         this.ball = new Ball(this.ctx)
         this.racket = new Racket(this.ctx)
 
         this._lastTime = 0
-        this._direction = 'null'
         this.initInput()
         this.loop(0)
     }
 
     private drawAll() {
         this.ctx.clearRect(0, 0, 2000, 2000)
-        this.rectangle.draw()
         this.ball.draw()
         this.racket.draw()
     }
 
     private initInput() {
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'j') this._direction = 'left'
-            if (e.key === ';') this._direction = 'right'
             if (e.key === 'l') this.racket.rise()
             if (e.key === 'k') this.racket.downhill()
         })
-        window.addEventListener('keyup', (e) => {
-            console.log(e)
-            if (e.key === 'j' && this._direction != 'right')
-                this._direction = 'null'
-            if (e.key === ';' && this._direction != 'left')
-                this._direction = 'null'
-        })
-    }
-
-    private positionRectangle(deltaTime: number) {
-        switch (this._direction) {
-            case 'right':
-                this.rectangle.setx(
-                    this.rectangle.getx() + this.speedRectangle * deltaTime
-                )
-                break
-            case 'left':
-                this.rectangle.setx(
-                    this.rectangle.getx() - this.speedRectangle * deltaTime
-                )
-                break
-        }
     }
 
     private loop(time: number) {
         const deltaTime: number = time - this._lastTime
 
-        this.positionRectangle(deltaTime)
         this.racket.move(deltaTime)
 
         this._lastTime = time
