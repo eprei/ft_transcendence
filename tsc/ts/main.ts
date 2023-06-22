@@ -42,13 +42,22 @@ class Ball {
         this._x += this._dx * deltaTime * this._speed
         this._y += this._dy * deltaTime * this._speed
 
-        if (this._y > this._stopBottom) this._y = this._stopBottom
-        if (this._y < this._stopTop) this._y = this._stopTop
+        if (this._y > this._stopBottom) {
+            this._dy = -this._dy
+            this._y = this._stopBottom
+        }
+        if (this._y < this._stopTop) {
+            this._dy = -this._dy
+            this._y = this._stopTop
+        }
         if (this._x > this._stopRight) {
             this._dx = -this._dx
             this._x = this._stopRight
         }
-        if (this._x < this._stopLeft) this._x = this._stopLeft
+        if (this._x < this._stopLeft) {
+            this._dx = -this._dx
+            this._x = this._stopLeft
+        }
     }
 }
 
