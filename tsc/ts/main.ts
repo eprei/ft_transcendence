@@ -44,6 +44,10 @@ class Rectangle {
         this.ctx.fillStyle = 'green'
         this.ctx.fillRect(this._x, this._y, this._width, this._heigth)
     }
+
+    public getx(): number {
+        return this._x
+    }
 }
 
 class BoardGame {
@@ -66,7 +70,7 @@ class BoardGame {
     }
 
     private loop(time: number) {
-        console.log('loop -- ' + time)
+        console.log('loop -- ' + time + ' x ' + this.rectangle.getx())
 
         window.requestAnimationFrame(this.loop.bind(this))
     }
