@@ -19,6 +19,8 @@ class Ball {
 class Rectangle {
     private canvas: HTMLCanvasElement
     private ctx: CanvasRenderingContext2D
+    private _x: number
+    private _y: number
 
     constructor(
         canvas: HTMLCanvasElement,
@@ -29,12 +31,14 @@ class Rectangle {
         this.canvas = canvas
         this.ctx = ctx
 
+        this._x = 20
+        this._y = 10
         this.drawRectangle(width, heigth)
     }
 
     private drawRectangle(width: number, heigth: number) {
         this.ctx.fillStyle = 'green'
-        this.ctx.fillRect(20, 10, width, heigth)
+        this.ctx.fillRect(this._x, this._y, width, heigth)
     }
 }
 
