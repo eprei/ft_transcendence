@@ -61,7 +61,7 @@ class BoardGame {
 
         this.ctx = ctx
 
-        this.rectangle = new Rectangle(this.ctx, 150, 100)
+        this.rectangle = new Rectangle(this.ctx, 10, 50)
         this.ball = new Ball(this.ctx)
 
         this._lastTime = 0
