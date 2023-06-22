@@ -7,7 +7,7 @@ class Ball {
     private _stopBottom: number
     private _stopLeft: number
     private _stopRight: number
-    private _speed: number = 0.1
+    private _speed: number
     private _dx: number
     private _dy: number
 
@@ -24,7 +24,7 @@ class Ball {
         this._stopBottom = canvaHeight - this._radius
         this._stopLeft = 0
         this._stopRight = canvaWidth - this._radius
-        this._speed = 0.1
+        this._speed = 0.5
         this._dx = 0.5
         this._dy = 0.1
 
