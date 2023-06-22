@@ -55,6 +55,7 @@ class BoardGame {
     private ctx: CanvasRenderingContext2D
     private rectangle: Rectangle
     private ball: Ball
+    private _lastTime: number
 
     constructor() {
         let canvas = document.getElementById('boardGame') as HTMLCanvasElement
@@ -66,12 +67,21 @@ class BoardGame {
         this.rectangle = new Rectangle(this.canvas, this.ctx, 150, 100)
         this.ball = new Ball(this.canvas, this.ctx)
 
+        this._lastTime = 0
         this.loop(0)
     }
 
     private loop(time: number) {
-        console.log('loop -- ' + time + ' x ' + this.rectangle.getx())
-
+        const deltaTime: number = time - this._lastTime
+        console.log(
+            'loop -- ' +
+                time +
+                ' x ' +
+                this.rectangle.getx() +
+                ' delta ' +
+                deltaTime
+        )
+        this._lastTime = time
         window.requestAnimationFrame(this.loop.bind(this))
     }
 }
