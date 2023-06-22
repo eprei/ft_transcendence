@@ -6,10 +6,10 @@ class Ball {
         this.canvas = canvas
         this.ctx = ctx
 
-        this.drawBall()
+        this.draw()
     }
 
-    private drawBall() {
+    public draw() {
         this.ctx.fillStyle = 'red'
         this.ctx.arc(40, 20, 5, 0, Math.PI * 2, true)
         this.ctx.fill()
@@ -37,10 +37,10 @@ class Rectangle {
         this._y = 10
         this._width = width
         this._heigth = heigth
-        this.drawRectangle()
+        this.draw()
     }
 
-    private drawRectangle() {
+    public draw() {
         this.ctx.fillStyle = 'green'
         this.ctx.fillRect(this._x, this._y, this._width, this._heigth)
     }
@@ -51,7 +51,7 @@ class Rectangle {
 
     public updatex(x: number) {
         this._x = x
-        this.drawRectangle()
+        this.draw()
     }
 }
 
@@ -76,6 +76,12 @@ class BoardGame {
         this.loop(0)
     }
 
+    private drawAll() {
+        this.ctx.clearRect(0, 0, 2000, 2000)
+        this.rectangle.draw()
+        this.ball.draw()
+    }
+
     private loop(time: number) {
         const deltaTime: number = time - this._lastTime
         console.log(
@@ -87,7 +93,8 @@ class BoardGame {
                 deltaTime
         )
         this._lastTime = time
-        this.rectangle.updatex(this.rectangle.getx() + deltaTime)
+        this.rectangle.updatex(this.rectangle.getx() + 0.001 * deltaTime)
+        this.drawAll()
         window.requestAnimationFrame(this.loop.bind(this))
     }
 }
