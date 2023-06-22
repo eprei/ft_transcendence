@@ -42,7 +42,6 @@ class Rectangle {
 
     public updatex(x: number) {
         this._x = x
-        this.draw()
     }
 }
 
