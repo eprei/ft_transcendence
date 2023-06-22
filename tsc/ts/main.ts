@@ -20,7 +20,7 @@ class Ball {
         this._x = canvaWidth / 2
         this._y = canvaHeight / 2
         this._radius = 10
-        this._stopTop = 0
+        this._stopTop = this._radius
         this._stopBottom = canvaHeight - this._radius
         this._stopLeft = 0
         this._stopRight = canvaWidth - this._radius
