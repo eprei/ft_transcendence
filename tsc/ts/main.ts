@@ -71,8 +71,8 @@ class Ball {
         if (
             racket.xmin < this._x &&
             this._x < racket.xmax &&
-            racket.ymin < this._y &&
-            this._y < racket.ymax
+            racket.ymin - this._radius < this._y &&
+            this._y < racket.ymax + this._radius
         ) {
             this._dx = -this._dx
         }
@@ -94,7 +94,7 @@ class Racket {
         this._ctx = ctx
 
         this._x = 20
-        this._y = 95
+        this._y = 155
         this._width = 10
         this._heigth = 50
         this._stopTop = 0
