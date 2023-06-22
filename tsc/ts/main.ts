@@ -51,6 +51,7 @@ class BoardGame {
     private rectangle: Rectangle
     private ball: Ball
     private _lastTime: number
+    private _direction: 'right' | 'left'
 
     constructor() {
         let canvas = document.getElementById('boardGame') as HTMLCanvasElement
@@ -62,6 +63,7 @@ class BoardGame {
         this.ball = new Ball(this.ctx)
 
         this._lastTime = 0
+        this._direction = 'right'
         this.loop(0)
     }
 
@@ -82,7 +84,14 @@ class BoardGame {
                 deltaTime
         )
         this._lastTime = time
-        this.rectangle.updatex(this.rectangle.getx() + 0.001 * deltaTime)
+        switch (this._direction) {
+            case 'right':
+                this.rectangle.updatex(this.rectangle.getx() + 0.1 * deltaTime)
+                break
+            case 'left':
+                this.rectangle.updatex(this.rectangle.getx() - 0.1 * deltaTime)
+                break
+        }
         this.drawAll()
         window.requestAnimationFrame(this.loop.bind(this))
     }
