@@ -1,16 +1,51 @@
 class Ball {
-    private ctx: CanvasRenderingContext2D
+    private _ctx: CanvasRenderingContext2D
+    private _x: number
+    private _y: number
+    private _radius: number
+    private _stopTop: number
+    private _stopBottom: number
+    private _stopLeft: number
+    private _stopRight: number
+    private _speed: number = 0.1
+    private _dx: number
+    private _dy: number
 
-    constructor(ctx: CanvasRenderingContext2D) {
-        this.ctx = ctx
+    constructor(
+        ctx: CanvasRenderingContext2D,
+        canvaWidth: number,
+        canvaHeight: number
+    ) {
+        this._ctx = ctx
+        this._x = canvaWidth / 2
+        this._y = canvaHeight / 2
+        this._radius = 10
+        this._stopTop = 0
+        this._stopBottom = canvaHeight - this._radius
+        this._stopLeft = 0
+        this._stopRight = canvaWidth - this._radius
+        this._speed = 0.1
+        this._dx = 0.5
+        this._dy = 0.1
 
         this.draw()
     }
 
     public draw() {
-        this.ctx.fillStyle = 'red'
-        this.ctx.arc(40, 20, 5, 0, Math.PI * 2, true)
-        this.ctx.fill()
+        this._ctx.fillStyle = 'red'
+        this._ctx.beginPath()
+        this._ctx.arc(this._x, this._y, this._radius, 0, Math.PI * 2, true)
+        this._ctx.fill()
+    }
+
+    public move(deltaTime: number) {
+        this._x += this._dx * deltaTime * this._speed
+        this._y += this._dy * deltaTime * this._speed
+
+        if (this._y > this._stopBottom) this._y = this._stopBottom
+        if (this._y < this._stopTop) this._y = this._stopTop
+        if (this._x > this._stopRight) this._x = this._stopRight
+        if (this._x < this._stopLeft) this._x = this._stopLeft
     }
 }
 
@@ -81,7 +116,7 @@ class BoardGame {
         this.canvas = canvas
         this.ctx = ctx
 
-        this.ball = new Ball(this.ctx)
+        this.ball = new Ball(this.ctx, this.canvas.width, this.canvas.height)
         this.racket = new Racket(this.ctx)
 
         this._lastTime = 0
@@ -106,6 +141,7 @@ class BoardGame {
         const deltaTime: number = time - this._lastTime
 
         this.racket.move(deltaTime)
+        this.ball.move(deltaTime)
 
         this._lastTime = time
         this.drawAll()
