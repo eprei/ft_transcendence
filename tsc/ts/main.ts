@@ -48,6 +48,11 @@ class Rectangle {
     public getx(): number {
         return this._x
     }
+
+    public updatex(x: number) {
+        this._x = x
+        this.drawRectangle()
+    }
 }
 
 class BoardGame {
@@ -82,6 +87,7 @@ class BoardGame {
                 deltaTime
         )
         this._lastTime = time
+        this.rectangle.updatex(this.rectangle.getx() + deltaTime)
         window.requestAnimationFrame(this.loop.bind(this))
     }
 }
