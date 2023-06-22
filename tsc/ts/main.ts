@@ -21,6 +21,8 @@ class Rectangle {
     private ctx: CanvasRenderingContext2D
     private _x: number
     private _y: number
+    private _heigth: number
+    private _width: number
 
     constructor(
         canvas: HTMLCanvasElement,
@@ -33,12 +35,14 @@ class Rectangle {
 
         this._x = 20
         this._y = 10
-        this.drawRectangle(width, heigth)
+        this._width = width
+        this._heigth = heigth
+        this.drawRectangle()
     }
 
-    private drawRectangle(width: number, heigth: number) {
+    private drawRectangle() {
         this.ctx.fillStyle = 'green'
-        this.ctx.fillRect(this._x, this._y, width, heigth)
+        this.ctx.fillRect(this._x, this._y, this._width, this._heigth)
     }
 }
 
