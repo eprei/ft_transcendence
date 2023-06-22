@@ -47,6 +47,8 @@ class Rectangle {
 }
 
 class BoardGame {
+    readonly speedRectangle: number = 0.1
+
     private ctx: CanvasRenderingContext2D
     private rectangle: Rectangle
     private ball: Ball
@@ -86,10 +88,14 @@ class BoardGame {
         this._lastTime = time
         switch (this._direction) {
             case 'right':
-                this.rectangle.updatex(this.rectangle.getx() + 0.1 * deltaTime)
+                this.rectangle.updatex(
+                    this.rectangle.getx() + this.speedRectangle * deltaTime
+                )
                 break
             case 'left':
-                this.rectangle.updatex(this.rectangle.getx() - 0.1 * deltaTime)
+                this.rectangle.updatex(
+                    this.rectangle.getx() - this.speedRectangle * deltaTime
+                )
                 break
         }
         if (this.rectangle.getx() >= 100) this._direction = 'left'
