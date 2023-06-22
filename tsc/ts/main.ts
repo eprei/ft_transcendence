@@ -45,14 +45,68 @@ class Rectangle {
     }
 }
 
+class Racket {
+    private _ctx: CanvasRenderingContext2D
+    private _x: number
+    private _y: number
+    private _heigth: number
+    private _width: number
+    private _stopTop: number
+    private _stopBottom: number
+    private _speed: number = 0.1
+    private _state: 'rising' | 'downhilling' | 'stand'
+
+    constructor(ctx: CanvasRenderingContext2D) {
+        this._ctx = ctx
+
+        this._x = 20
+        this._y = 10
+        this._width = 10
+        this._heigth = 50
+        this._stopTop = 0
+        this._stopBottom = 300 - this._heigth
+        this._state = 'stand'
+        this.draw()
+    }
+
+    public draw() {
+        this._ctx.fillStyle = 'green'
+        this._ctx.fillRect(this._x, this._y, this._width, this._heigth)
+    }
+
+    public rise() {
+        this._state = 'rising'
+    }
+
+    public downhill() {
+        this._state = 'downhilling'
+    }
+
+    public move(deltaTime: number) {
+        switch (this._state) {
+            case 'rising':
+                this._y -= this._speed * deltaTime
+                break
+            case 'downhilling':
+                this._y += this._speed * deltaTime
+                break
+        }
+
+        if (this._y > this._stopBottom) this._y = this._stopBottom
+        if (this._y < this._stopTop) this._y = this._stopTop
+    }
+}
+
 class BoardGame {
     readonly speedRectangle: number = 0.1
 
     private ctx: CanvasRenderingContext2D
     private rectangle: Rectangle
+    private left: Racket
     private ball: Ball
     private _lastTime: number
     private _direction: 'right' | 'left' | 'null'
+    private racket: Racket
 
     constructor() {
         let canvas = document.getElementById('boardGame') as HTMLCanvasElement
@@ -62,6 +116,7 @@ class BoardGame {
 
         this.rectangle = new Rectangle(this.ctx, 10, 50)
         this.ball = new Ball(this.ctx)
+        this.racket = new Racket(this.ctx)
 
         this._lastTime = 0
         this._direction = 'null'
@@ -73,12 +128,15 @@ class BoardGame {
         this.ctx.clearRect(0, 0, 2000, 2000)
         this.rectangle.draw()
         this.ball.draw()
+        this.racket.draw()
     }
 
     private initInput() {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'j') this._direction = 'left'
             if (e.key === ';') this._direction = 'right'
+            if (e.key === 'l') this.racket.rise()
+            if (e.key === 'k') this.racket.downhill()
         })
         window.addEventListener('keyup', (e) => {
             console.log(e)
@@ -108,6 +166,7 @@ class BoardGame {
         const deltaTime: number = time - this._lastTime
 
         this.positionRectangle(deltaTime)
+        this.racket.move(deltaTime)
 
         this._lastTime = time
         this.drawAll()
