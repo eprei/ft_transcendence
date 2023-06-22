@@ -52,7 +52,7 @@ class BoardGame {
     private rectangle: Rectangle
     private ball: Ball
     private _lastTime: number
-    private _direction: 'right' | 'left'
+    private _direction: 'right' | 'left' | 'null'
 
     constructor() {
         let canvas = document.getElementById('boardGame') as HTMLCanvasElement
@@ -64,7 +64,7 @@ class BoardGame {
         this.ball = new Ball(this.ctx)
 
         this._lastTime = 0
-        this._direction = 'right'
+        this._direction = 'null'
         this.initInput()
         this.loop(0)
     }
@@ -79,6 +79,13 @@ class BoardGame {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'j') this._direction = 'left'
             if (e.key === ';') this._direction = 'right'
+        })
+        window.addEventListener('keyup', (e) => {
+            console.log(e)
+            if (e.key === 'j' && this._direction != 'right')
+                this._direction = 'null'
+            if (e.key === ';' && this._direction != 'left')
+                this._direction = 'null'
         })
     }
 
