@@ -67,6 +67,7 @@ class Racket {
 }
 
 class BoardGame {
+    private canvas: HTMLCanvasElement
     private ctx: CanvasRenderingContext2D
     private left: Racket
     private ball: Ball
@@ -77,6 +78,7 @@ class BoardGame {
         let canvas = document.getElementById('boardGame') as HTMLCanvasElement
         let ctx = canvas.getContext('2d')
 
+        this.canvas = canvas
         this.ctx = ctx
 
         this.ball = new Ball(this.ctx)
@@ -88,7 +90,7 @@ class BoardGame {
     }
 
     private drawAll() {
-        this.ctx.clearRect(0, 0, 2000, 2000)
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ball.draw()
         this.racket.draw()
     }
