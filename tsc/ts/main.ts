@@ -116,6 +116,10 @@ class Racket {
         this._state = 'downhilling'
     }
 
+    public stand() {
+        this._state = 'stand'
+    }
+
     public location(): location {
         return {
             xmin: this._x,
@@ -173,6 +177,10 @@ class BoardGame {
         window.addEventListener('keydown', (e) => {
             if (e.key === 'l') this.racket.rise()
             if (e.key === 'k') this.racket.downhill()
+        })
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'l') this.racket.stand()
+            if (e.key === 'k') this.racket.stand()
         })
     }
 
