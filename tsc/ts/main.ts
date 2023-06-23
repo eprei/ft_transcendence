@@ -77,7 +77,20 @@ class Ball {
             racketTop < this._y &&
             this._y < racketBot
         ) {
-            this._dx = -this._dx
+            // detect face
+            let distance: number[] = []
+            distance[0] = this._y - racketTop
+            distance[1] = racketRig - this._x
+            distance[2] = racketBot - this._y
+            distance[3] = this._x - racketLef
+
+            let smallest: number = Math.min(...distance)
+            let indexSmallest: number = distance.indexOf(smallest)
+
+			// set the directino
+            if (indexSmallest % 2) {
+                this._dx = -this._dx
+            } else this._dy = -this._dy
         }
     }
 }
