@@ -40,9 +40,7 @@ class Ball {
 
     public draw() {
         this._ctx.fillStyle = 'red'
-        this._ctx.beginPath()
-        this._ctx.arc(this._x, this._y, this._radius, 0, Math.PI * 2, true)
-        this._ctx.fill()
+        this._ctx.fillRect(this._x, this._y, this._radius, this._radius)
     }
 
     public move(deltaTime: number, racket: location) {
