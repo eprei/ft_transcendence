@@ -87,7 +87,21 @@ class Ball {
             let smallest: number = Math.min(...distance)
             let indexSmallest: number = distance.indexOf(smallest)
 
-			// set the directino
+            // set the direction
+            switch (indexSmallest) {
+                case 1: // top
+                    this._dy = -Math.abs(this._dy)
+                    break
+                case 2: // right
+                    this._dx = Math.abs(this._dx)
+                    break
+                case 3: // bottom
+                    this._dy = Math.abs(this._dy)
+                    break
+                case 4: // left
+                    this._dx = -Math.abs(this._dx)
+                    break
+            }
             if (indexSmallest % 2) {
                 this._dx = -this._dx
             } else this._dy = -this._dy
