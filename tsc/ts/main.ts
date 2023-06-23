@@ -30,8 +30,8 @@ class Ball {
         this._stopTop = this._radius
         this._stopBottom = canvaHeight - this._radius
         this._stopLeft = 0
-        this._stopRight = canvaWidth - this._radius
-        this._speed = 0.5
+        this._stopRight = 40
+        this._speed = 0.1
         this._dx = -0.5
         this._dy = 0.0
 
