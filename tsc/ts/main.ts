@@ -65,12 +65,17 @@ class Ball {
             this._x = this._stopLeft
         }
 
+        let racketTop: number = racket.ymin - this._radius
+        let racketBot: number = racket.ymax
+        let racketLef: number = racket.xmin - this._radius
+        let racketRig: number = racket.xmax
+
         // racket
         if (
-            racket.xmin - this._radius < this._x &&
-            this._x < racket.xmax &&
-            racket.ymin - this._radius < this._y &&
-            this._y < racket.ymax
+            racketLef < this._x &&
+            this._x < racketRig &&
+            racketTop < this._y &&
+            this._y < racketBot
         ) {
             this._dx = -this._dx
         }
