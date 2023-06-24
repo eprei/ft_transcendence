@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { TypeOrmModule } from '@nestjs/typeorm'
@@ -14,6 +14,7 @@ import { Match } from './typeorm/match.entity'
 import { FriendModule } from './friend/friend.module'
 import { MatchModule } from './match/match.module'
 import { AuthModule } from './auth/auth.module'
+import { ResponseLoggingMiddleware } from './middlewares/response-logging.middleware'
 
 @Module({
     imports: [
@@ -36,4 +37,9 @@ import { AuthModule } from './auth/auth.module'
     controllers: [AppController],
     providers: [AppService],
 })
-export class AppModule {}
+
+export class AppModule implements NestModule {
+	configure(consumer: MiddlewareConsumer) {
+	  consumer.apply(ResponseLoggingMiddleware).forRoutes('*');
+	}
+}
