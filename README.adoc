@@ -2,6 +2,10 @@
 
 Final project of the common core of school 42
 
+.resources
+* https://docs.nestjs.com/websockets/gateways#installation
+* https://www.joshmorony.com/creating-a-simple-live-chat-server-with-nestjs-websockets/#introducing-web-sockets
+
 == Technologies
 
 * https://react.dev/[React] + https://vitejs.dev/[ViteJS]
