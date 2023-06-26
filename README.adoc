@@ -6,6 +6,9 @@ Final project of the common core of school 42
 * https://docs.nestjs.com/websockets/gateways#installation
 * https://www.joshmorony.com/creating-a-simple-live-chat-server-with-nestjs-websockets/#introducing-web-sockets
 
+.react with socket io
+* https://socket.io/how-to/use-with-react
+
 == Technologies
 
 * https://react.dev/[React] + https://vitejs.dev/[ViteJS]
