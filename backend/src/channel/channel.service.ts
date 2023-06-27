@@ -14,11 +14,12 @@ export class ChannelService {
     ) {}
 
     create(createChannelDto: CreateChannelDto) {
-        return 'This action adds a new channel'
+        const channel = this.channelRepository.create(createChannelDto)
+        return this.channelRepository.save(channel)
     }
 
     findAll() {
-        return `This action returns all channel`
+        return this.channelRepository.find()
     }
 
     findOne(id: number) {

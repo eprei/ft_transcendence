@@ -1,8 +1,4 @@
-import { 
-	Column,
-	Entity,
-	PrimaryGeneratedColumn
- } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 import { Channel } from './channel.entity'
 

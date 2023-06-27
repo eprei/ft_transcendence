@@ -1,21 +1,20 @@
-import React, { useState } from 'react'
+// import { Form, Input, Modal, Radio } from 'antd'
+import { useState } from 'react';
 import { Form, Input, Modal, Radio } from 'antd'
-import IconAddChannel from '../../assets/icon/add_friend.svg'
-import styles from './ChannelList.module.css'
-import { Channel } from '../../types/Channel'
-import channelType from '../../types/ChannelTypes'
+import { Channel } from '../../../types/Channel'
+import channelType from '../../../types/ChannelTypes'
 
-interface CollectionCreateFormProps {
+interface ChannelCreateFormProps {
     open: boolean
     onCreate: (values: Channel) => void
     onCancel: () => void
 }
 
-const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
+const ChannelCreateForm = ({
     open,
     onCreate,
     onCancel,
-}) => {
+}:ChannelCreateFormProps ) => {
     const [form] = Form.useForm()
 
     const [isPrivate, setIsPrivate] = useState<boolean>(false)
@@ -43,8 +42,6 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
         )
     }
 
-
-
     return (
         <Modal
             open={open}
@@ -57,12 +54,10 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
                     .then((values) => {
                         form.resetFields()
                         const newChannel: Channel = {
-                            id: new Date().getTime(),
-                            owner: new Date().getTime() + 4,
+                            owner: Math.floor(Math.random() * 1000), //user.id
                             name: values.chName,
                             type: values.type,
                             password: values.password,
-                            creationDate: new Date().getTime().toString(),
                         }
                         onCreate(newChannel)
                         setIsPrivate(false)
@@ -105,59 +100,4 @@ const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
     )
 }
 
-interface CreateNewChProps {
-    handleCreation: (channel: Channel) => void
-}
-
-const CreateNewCh = ({ handleCreation }: CreateNewChProps) => {
-    const [open, setOpen] = useState(false)
-
-    const onCreate = (values: Channel) => {
-        console.log('Received values of form: ', values)
-        setOpen(false)
-        handleCreation(values)
-    }
-
-    return (
-        <div>
-            <button
-                className={`${styles.chList} ${styles.newCh}`}
-                onClick={() => {
-                    setOpen(true)
-                }}
-            >
-                New channel
-                <img
-                    src={IconAddChannel}
-                    alt="plus sign"
-                    className={styles.addChannelIcon}
-                />
-            </button>
-
-            <CollectionCreateForm
-                open={open}
-                onCreate={onCreate}
-                onCancel={() => {
-                    setOpen(false)
-                }}
-            />
-        </div>
-    )
-}
-
-export default CreateNewCh
-
-// const handlenewChSubmit = () => {
-// 		if (
-// 			enteredEmail.trim().length > 0 &&
-// 			enteredName.trim().length > 0 &&
-// 			enteredPicUrl.trim().length > 0
-// 		) {
-// 			const user = {
-// 				login: enteredName,
-// 				email: enteredEmail,
-// 				avatarUrl: enteredPicUrl,
-// 			}
-// 			props.submitNewPlayer(user)
-// 		}
-// 	}
+export default ChannelCreateForm

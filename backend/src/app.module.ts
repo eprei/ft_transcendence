@@ -23,11 +23,10 @@ import { ChannelUser } from './typeorm/channel-user.entity'
             entities: [Player, Channel, ChannelUser],
         }),
         PlayerModule,
-        // ChannelModule,
+        ChannelModule,
         // ChannelUserModule,
     ],
 })
-
 export class AppModule {
     static port: number
 

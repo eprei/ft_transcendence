@@ -16,18 +16,8 @@ export class Channel {
     @PrimaryGeneratedColumn()
     id: number
 
-    // The side you set @JoinColumn on,  that side's table will contain a "relation id"
-    // and the foreign keys to targe entity table
-
-    //bidirectional
-    // @ManyToOne(() => Player, (player) => player.id) //apres virgule inverse side parameter
-
-    //unidirectional
-    //varios canales para un solo user posible
-    //1st word actual entity 2nd Foreign entity
-    @ManyToOne(() => Player)
-    @JoinColumn()
-    owner: Player
+    @Column()
+    owner: number
 
     @Column({
         unique: true,
@@ -38,7 +28,10 @@ export class Channel {
     @Column()
     type: string
 
-    @Column()
+    @Column({
+        length: 30,
+        nullable: true,
+    })
     password: string
 
     @CreateDateColumn()
@@ -47,4 +40,17 @@ export class Channel {
     //chUser table
     // @OneToMany(() => ChannelUser)
     // channelUser: ChannelUser;
+
+    // The side you set @JoinColumn on,  that side's table will contain a "relation id"
+    // and the foreign keys to targe entity table
+
+    //bidirectional
+    // @ManyToOne(() => Player, (player) => player.id) //apres virgule inverse side parameter
+
+    //unidirectional
+    //varios canales para un solo user posible
+    //1st word actual entity 2nd Foreign entity
+    // @ManyToOne(() => Player)
+    // @JoinColumn()
+    // owner: Player
 }

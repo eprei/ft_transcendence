@@ -12,13 +12,15 @@ async function bootstrap() {
         allowedHeaders: 'Content-Type, Accept',
     }
     app.setGlobalPrefix('api')
-    app.useGlobalPipes(
-        new ValidationPipe({
-            whitelist: true,
-        })
-    )
+    // app.useGlobalPipes(
+    //     new ValidationPipe({
+    //         whitelist: true,
+    //     })
+    // )
+    app.useGlobalPipes(new ValidationPipe())
     app.enableCors(corsOptions)
     await app.listen(3000)
+    // await app.listen(AppModule.port)
 }
 
 bootstrap()

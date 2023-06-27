@@ -6,20 +6,28 @@ import {
     Patch,
     Param,
     Delete,
+    UsePipes,
+    ValidationPipe,
 } from '@nestjs/common'
 import { ChannelService } from './channel.service'
 import { CreateChannelDto } from './dto/create-channel.dto'
 import { UpdateChannelDto } from './dto/update-channel.dto'
-import { cachedDataVersionTag } from 'v8'
 
 @Controller('channel')
 export class ChannelController {
     constructor(private readonly channelService: ChannelService) {}
 
     @Post()
-    create(@Body() createChannelDto: CreateChannelDto) {
-        return this.channelService.create(createChannelDto)
+    @UsePipes(ValidationPipe)
+    async create(@Body() createChannelDto: CreateChannelDto) {
+        console.log(createChannelDto)
+        const channel = this.channelService.create(createChannelDto)
+        return channel
     }
+
+    // create(@Body() createChannelDto: CreateChannelDto) {
+    //     return this.channelService.create(createChannelDto)
+    // }
 
     @Get()
     findAll() {
