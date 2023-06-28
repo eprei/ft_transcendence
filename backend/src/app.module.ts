@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { ConfigModule } from '@nestjs/config'
 import { PlayerModule } from './player/player.module'
 import { Player } from './typeorm/Player'
+import { PongModule } from './pong/pong.module'
 
 @Module({
     imports: [
@@ -17,6 +18,7 @@ import { Player } from './typeorm/Player'
             entities: [Player],
         }),
         PlayerModule,
+        PongModule,
     ],
     controllers: [AppController],
     providers: [AppService],
