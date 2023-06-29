@@ -6,7 +6,10 @@ import {
     Patch,
     Param,
     Delete,
+	ValidationPipe,
+	UsePipes,
 } from '@nestjs/common'
+
 import { ChannelUserService } from './channel-user.service'
 import { CreateChannelUserDto } from './dto/create-channel-user.dto'
 import { UpdateChannelUserDto } from './dto/update-channel-user.dto'
@@ -16,8 +19,17 @@ export class ChannelUserController {
     constructor(private readonly channelUserService: ChannelUserService) {}
 
     @Post()
-    create(@Body() createChannelUserDto: CreateChannelUserDto) {
-        return this.channelUserService.create(createChannelUserDto)
+    @UsePipes(ValidationPipe)
+    async create(@Body() createChannelUserDto: CreateChannelUserDto) {
+        console.log(createChannelUserDto)
+        try {
+			const channelUser = await this.channelUserService.create(createChannelUserDto)
+			return channelUser
+		}
+		catch (error) {	
+			console.log(error)
+			throw error
+		}	
     }
 
     @Get()
@@ -30,6 +42,11 @@ export class ChannelUserController {
         return this.channelUserService.findOne(+id)
     }
 
+	@Get(':channelId/:userId')
+  	findByChAndUser(@Param('channelId') channelId: string, @Param('userId') userId: string) {
+    	return this.channelUserService.findOneByChannelAndPlayer(+channelId, +userId)
+		}
+
     @Patch(':id')
     update(
         @Param('id') id: string,
@@ -38,8 +55,9 @@ export class ChannelUserController {
         return this.channelUserService.update(+id, updateChannelUserDto)
     }
 
-    @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.channelUserService.remove(+id)
+    @Delete(':channelId/:userId')
+	removeUserFromChannel(@Param('channelId') channelId: string, @Param('userId') userId: string) {
+		console.log(channelId, userId)
+        return this.channelUserService.removeByChannelAndPlayer(+channelId, +userId)
     }
 }

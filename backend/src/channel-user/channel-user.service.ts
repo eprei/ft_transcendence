@@ -1,26 +1,50 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable,
+		HttpException,
+		HttpStatus } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+
 import { CreateChannelUserDto } from './dto/create-channel-user.dto'
 import { UpdateChannelUserDto } from './dto/update-channel-user.dto'
+import { ChannelUser } from 'src/typeorm/channel-user.entity'
 
 @Injectable()
 export class ChannelUserService {
-    create(createChannelUserDto: CreateChannelUserDto) {
-        return 'This action adds a new channelUser'
+	constructor(
+        @InjectRepository(ChannelUser)
+        private readonly channelUserRepository: Repository<ChannelUser> 
+    ) {}
+	
+	async create(createChannelUserDto: CreateChannelUserDto) {
+		const existingEntry = await this.findOneByChannelAndPlayer(createChannelUserDto.channel_id, createChannelUserDto.player_id)
+        if (existingEntry) {
+			throw new HttpException('User alredy in channel', HttpStatus.BAD_REQUEST); 		  //   throw new Error('User alredy in channel');
+		}
+		
+		const channelUser = this.channelUserRepository.create(createChannelUserDto)
+        return this.channelUserRepository.save(channelUser)
     }
 
     findAll() {
-        return `This action returns all channelUser`
+        return this.channelUserRepository.find()
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} channelUser`
+	findOne(id: number) {
+	}
+
+    findOneByChannelAndPlayer(ch_id: number, pl_id: number) {
+		return this.channelUserRepository.findOne({ where: { channel: { id: ch_id }, player: { id: pl_id } } })
     }
 
-    update(id: number, updateChannelUserDto: UpdateChannelUserDto) {
+	update(id: number, updateChannelUserDto: UpdateChannelUserDto) {
         return `This action updates a #${id} channelUser`
     }
 
     remove(id: number) {
-        return `This action removes a #${id} channelUser`
+		return this.channelUserRepository.delete(id)
     }
+	
+	async removeByChannelAndPlayer(ch_id: number, pl_id: number) {
+		const chUser = await this.channelUserRepository.delete({ channel: { id: ch_id }, player: { id: pl_id } })
+	}
 }

@@ -24,7 +24,7 @@ import { ChannelUser } from './typeorm/channel-user.entity'
         }),
         PlayerModule,
         ChannelModule,
-        // ChannelUserModule,
+        ChannelUserModule,
     ],
 })
 export class AppModule {

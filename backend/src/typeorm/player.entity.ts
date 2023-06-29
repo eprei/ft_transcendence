@@ -1,13 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column,
+		 Entity,
+		 PrimaryGeneratedColumn,
+		 OneToMany } from 'typeorm'
 
-import { Channel } from './channel.entity'
+import { ChannelUser } from './channel-user.entity'
 
 @Entity()
 export class Player {
-    @PrimaryGeneratedColumn({
-        type: 'int',
-        name: 'player_id',
-    })
+    @PrimaryGeneratedColumn()
     id: number
 
     @Column({
@@ -32,6 +32,7 @@ export class Player {
     @Column({ default: 0 })
     xp: number
 
-    // @ManyToMany(() => Channel, channel => channel.owner)
-    // channels: Channel[];
+	//not sure of utility
+	@OneToMany(() => ChannelUser, channelUser => channelUser.player)
+	public channelUser: ChannelUser[];
 }
