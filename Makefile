@@ -18,15 +18,13 @@ env:
 		printf "$(GREEN)Generate environment variables\n$(DEFAULT)"; \
 		sh create-env.sh; \
 	fi
-# --write {backend,frontend} \
-# --write backend \
-# --write frontend \
 
 format:
 	docker run \
 	--rm \
 	--volume $(shell pwd):/app tgrivel/prettier \
 	--write backend \
+	--write frontend \
 	--config .prettierrc \
 	--ignore-path .prettierignore
 

@@ -1,6 +1,4 @@
-import { Injectable,
-		HttpException,
-		HttpStatus } from '@nestjs/common'
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 
@@ -10,18 +8,25 @@ import { ChannelUser } from 'src/typeorm/channel-user.entity'
 
 @Injectable()
 export class ChannelUserService {
-	constructor(
+    constructor(
         @InjectRepository(ChannelUser)
-        private readonly channelUserRepository: Repository<ChannelUser> 
+        private readonly channelUserRepository: Repository<ChannelUser>
     ) {}
-	
-	async create(createChannelUserDto: CreateChannelUserDto) {
-		const existingEntry = await this.findOneByChannelAndPlayer(createChannelUserDto.channel_id, createChannelUserDto.player_id)
+
+    async create(createChannelUserDto: CreateChannelUserDto) {
+        const existingEntry = await this.findOneByChannelAndPlayer(
+            createChannelUserDto.channel_id,
+            createChannelUserDto.player_id
+        )
         if (existingEntry) {
-			throw new HttpException('User alredy in channel', HttpStatus.BAD_REQUEST); 		  //   throw new Error('User alredy in channel');
-		}
-		
-		const channelUser = this.channelUserRepository.create(createChannelUserDto)
+            throw new HttpException(
+                'User alredy in channel',
+                HttpStatus.BAD_REQUEST
+            ) //   throw new Error('User alredy in channel');
+        }
+
+        const channelUser =
+            this.channelUserRepository.create(createChannelUserDto)
         return this.channelUserRepository.save(channelUser)
     }
 
@@ -29,22 +34,26 @@ export class ChannelUserService {
         return this.channelUserRepository.find()
     }
 
-	findOne(id: number) {
-	}
+    findOne(id: number) {}
 
     findOneByChannelAndPlayer(ch_id: number, pl_id: number) {
-		return this.channelUserRepository.findOne({ where: { channel: { id: ch_id }, player: { id: pl_id } } })
+        return this.channelUserRepository.findOne({
+            where: { channel: { id: ch_id }, player: { id: pl_id } },
+        })
     }
 
-	update(id: number, updateChannelUserDto: UpdateChannelUserDto) {
+    update(id: number, updateChannelUserDto: UpdateChannelUserDto) {
         return `This action updates a #${id} channelUser`
     }
 
     remove(id: number) {
-		return this.channelUserRepository.delete(id)
+        return this.channelUserRepository.delete(id)
     }
-	
-	async removeByChannelAndPlayer(ch_id: number, pl_id: number) {
-		const chUser = await this.channelUserRepository.delete({ channel: { id: ch_id }, player: { id: pl_id } })
-	}
+
+    async removeByChannelAndPlayer(ch_id: number, pl_id: number) {
+        const chUser = await this.channelUserRepository.delete({
+            channel: { id: ch_id },
+            player: { id: pl_id },
+        })
+    }
 }

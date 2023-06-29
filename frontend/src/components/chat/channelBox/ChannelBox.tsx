@@ -16,7 +16,6 @@ async function getChannels() {
 
         const channels = await response.json()
         return channels
-        // setChannels(channels);
     } catch (error) {
         console.error(error)
     }
@@ -44,9 +43,8 @@ async function postData(data: Channel) {
 }
 
 function ChannelBox() {
-
-    let importedChannels: Channel[] = channeljson;
-    console.log(importedChannels);
+    let importedChannels: Channel[] = channeljson
+    console.log(importedChannels)
     const [channels, setChannels] = useState<Channel[]>(importedChannels)
 
     const handleCreation = (channel: Channel) => {
@@ -57,21 +55,21 @@ function ChannelBox() {
         postData(channel).then((responseData) => {
             console.log(responseData)
         })
-        // setTimeout(() => {
-        //     getChannelHandler()
-        // }, 500)
+        setTimeout(() => {
+            getChannelHandler()
+        }, 500)
     }
 
-    // useEffect(() => {
-    //     getChannelHandler()
-    // }, [])
+    useEffect(() => {
+        getChannelHandler()
+    }, [])
 
-    // const getChannelHandler = () => {
-    //     getChannels().then((channels) => {
-    //         setChannels(channels)
-    //         console.log(channels)
-    //     })
-    // }
+    const getChannelHandler = () => {
+        getChannels().then((channels) => {
+            setChannels(channels)
+            console.log(channels)
+        })
+    }
 
     return (
         <div className={styles.channelbox}>

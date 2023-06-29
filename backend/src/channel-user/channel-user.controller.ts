@@ -6,8 +6,8 @@ import {
     Patch,
     Param,
     Delete,
-	ValidationPipe,
-	UsePipes,
+    ValidationPipe,
+    UsePipes,
 } from '@nestjs/common'
 
 import { ChannelUserService } from './channel-user.service'
@@ -23,13 +23,14 @@ export class ChannelUserController {
     async create(@Body() createChannelUserDto: CreateChannelUserDto) {
         console.log(createChannelUserDto)
         try {
-			const channelUser = await this.channelUserService.create(createChannelUserDto)
-			return channelUser
-		}
-		catch (error) {	
-			console.log(error)
-			throw error
-		}	
+            const channelUser = await this.channelUserService.create(
+                createChannelUserDto
+            )
+            return channelUser
+        } catch (error) {
+            console.log(error)
+            throw error
+        }
     }
 
     @Get()
@@ -42,10 +43,16 @@ export class ChannelUserController {
         return this.channelUserService.findOne(+id)
     }
 
-	@Get(':channelId/:userId')
-  	findByChAndUser(@Param('channelId') channelId: string, @Param('userId') userId: string) {
-    	return this.channelUserService.findOneByChannelAndPlayer(+channelId, +userId)
-		}
+    @Get(':channelId/:userId')
+    findByChAndUser(
+        @Param('channelId') channelId: string,
+        @Param('userId') userId: string
+    ) {
+        return this.channelUserService.findOneByChannelAndPlayer(
+            +channelId,
+            +userId
+        )
+    }
 
     @Patch(':id')
     update(
@@ -56,8 +63,14 @@ export class ChannelUserController {
     }
 
     @Delete(':channelId/:userId')
-	removeUserFromChannel(@Param('channelId') channelId: string, @Param('userId') userId: string) {
-		console.log(channelId, userId)
-        return this.channelUserService.removeByChannelAndPlayer(+channelId, +userId)
+    removeUserFromChannel(
+        @Param('channelId') channelId: string,
+        @Param('userId') userId: string
+    ) {
+        console.log(channelId, userId)
+        return this.channelUserService.removeByChannelAndPlayer(
+            +channelId,
+            +userId
+        )
     }
 }

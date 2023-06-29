@@ -1,7 +1,4 @@
-import { Column,
-		 Entity,
-		 PrimaryGeneratedColumn,
-		 OneToMany } from 'typeorm'
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
 
 import { ChannelUser } from './channel-user.entity'
 
@@ -32,7 +29,7 @@ export class Player {
     @Column({ default: 0 })
     xp: number
 
-	//not sure of utility
-	@OneToMany(() => ChannelUser, channelUser => channelUser.player)
-	public channelUser: ChannelUser[];
+    //not sure of utility
+    @OneToMany(() => ChannelUser, (channelUser) => channelUser.player)
+    public channelUser: ChannelUser[]
 }

@@ -35,7 +35,7 @@ export class Channel {
     @CreateDateColumn()
     creationDate: Date
 
-	//not sure of utility
-	@OneToMany(() => ChannelUser, channelUser => channelUser.channel)
-	public channelUser: ChannelUser[];
+    //not sure of utility
+    @OneToMany(() => ChannelUser, (channelUser) => channelUser.channel)
+    public channelUser: ChannelUser[]
 }

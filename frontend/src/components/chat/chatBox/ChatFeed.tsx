@@ -4,7 +4,7 @@ import Mauro from '../../../assets/img/mpons.jpg'
 import Robin from '../../../assets/img/rburri.jpg'
 import Samuel from '../../../assets/img/sbars.jpg'
 import Theo from '../../../assets/img/tgrivel.jpg'
-import styles from  './ChatFeed.module.css'
+import styles from './ChatFeed.module.css'
 
 interface Msg {
     id: number
