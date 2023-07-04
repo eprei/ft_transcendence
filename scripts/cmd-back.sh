@@ -22,7 +22,7 @@ format_code () {
 # $3            : name
 # $4 (optional) : path
 nestcli () {
-	if ! docker exec our-backend nest g ${2} ${3} ${4}
+	if ! docker exec our-backend nest g "${2}" "${3}" "${4}"
 	then
 		printf "error: docker exec\n"
 		exit 1
@@ -71,7 +71,7 @@ npm_install () {
 		exit
 	fi
 
-	if ! docker exec our-backend npm install "${flag_save}" ${3}
+	if ! docker exec our-backend npm install "${flag_save}" "${3}"
 	then
 		printf "error: docker exec\n"
 		exit 1
