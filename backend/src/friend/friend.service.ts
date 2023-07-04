@@ -4,14 +4,14 @@ import { UpdateFriendDto } from './dto/update-friend.dto'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Friend } from 'src/typeorm/friend.entity'
-import { PlayerService } from 'src/user/user.service'
+import { UserService } from 'src/user/user.service'
 
 @Injectable()
 export class FriendService {
     constructor(
         @InjectRepository(Friend)
         private readonly friendRepository: Repository<Friend>,
-        private readonly userService: PlayerService
+        private readonly userService: UserService
     ) {}
 
     async create(createFriendDto: CreateFriendDto) {

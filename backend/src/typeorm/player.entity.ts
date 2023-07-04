@@ -11,7 +11,7 @@ import { Friend } from './friend.entity'
 import { Match } from './match.entity'
 
 @Entity()
-export class Player {
+export class User {
     @PrimaryGeneratedColumn()
     id: number
 

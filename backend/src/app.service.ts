@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Player } from './typeorm/user.entity'
+import { User } from './typeorm/user.entity'
 import { Repository } from 'typeorm'
 import { Channel } from './typeorm/channel.entity'
 import { Friend } from './typeorm/friend.entity'
@@ -10,7 +10,7 @@ import { Match } from './typeorm/match.entity'
 @Injectable()
 export class AppService {
     constructor(
-        @InjectRepository(Player) private userRepo: Repository<Player>,
+        @InjectRepository(User) private userRepo: Repository<User>,
         @InjectRepository(Channel) private channelRepo: Repository<Channel>,
         @InjectRepository(Friend) private friendRepo: Repository<Friend>,
         @InjectRepository(Message) private messageRepo: Repository<Message>,
@@ -18,7 +18,7 @@ export class AppService {
     ) {}
 
     async seed() {
-        //  create Players
+        //  create Users
         const user1 = this.userRepo.create({
             login: 'user1',
             avatarUrl:
@@ -140,21 +140,21 @@ export class AppService {
             }
 
             const users = await this.userRepo.find({ take: userCount })
-            const channelPlayers = users
+            const channelUsers = users
                 .filter((user) => user.id !== channel.owner)
                 .filter((user) => user !== undefined)
-            if (channelPlayers.length >= userCount) {
-                channelPlayers.pop()
+            if (channelUsers.length >= userCount) {
+                channelUsers.pop()
             }
 
-            const allPlayers = await this.userRepo.find()
-            const owner = allPlayers.find(
+            const allUsers = await this.userRepo.find()
+            const owner = allUsers.find(
                 (user) => user.id === channel.owner
             )
-            channelPlayers.unshift(owner)
+            channelUsers.unshift(owner)
 
             for (let i = 0; i < 10; i++) {
-                const creator = channelPlayers[i % userCount].id
+                const creator = channelUsers[i % userCount].id
                 const content = `Message ${i + 1}`
 
                 const message = this.messageRepo.create({
@@ -175,10 +175,10 @@ export class AppService {
                 allusers[Math.floor(Math.random() * allusers.length)]
             const userB =
                 allusers[Math.floor(Math.random() * allusers.length)]
-            const isPlayerAWinner = Math.random() >= 0.5 // 50% chance for userA to win
+            const isUserAWinner = Math.random() >= 0.5 // 50% chance for userA to win
 
-            const winner = isPlayerAWinner ? userA : userB
-            const looser = isPlayerAWinner ? userB : userA
+            const winner = isUserAWinner ? userA : userB
+            const looser = isUserAWinner ? userB : userA
             const scoreWinner = Math.floor(Math.random() * 6)
             const scoreLooser = Math.floor(Math.random() * 6)
             const dateGame = new Date()

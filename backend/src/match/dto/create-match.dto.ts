@@ -1,18 +1,18 @@
 import { IsNotEmpty, IsOptional } from 'class-validator'
-import { Player } from '../../typeorm/user.entity'
+import { User } from '../../typeorm/user.entity'
 
 export class CreateMatchDto {
     @IsOptional()
     id?: number
 
     @IsNotEmpty()
-    userHome: Player
+    userHome: User
 
     @IsNotEmpty()
-    userForeign: Player
+    userForeign: User
 
     @IsNotEmpty()
-    winner: Player
+    winner: User
 
     @IsNotEmpty()
     homeScore: number

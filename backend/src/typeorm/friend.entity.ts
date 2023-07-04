@@ -1,16 +1,16 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
-import { Player } from './user.entity'
+import { User } from './user.entity'
 
 @Entity()
 export class Friend {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(() => Player, (user) => user.friends)
-    user: Player
+    @ManyToOne(() => User, (user) => user.friends)
+    user: User
 
-    @ManyToOne(() => Player, (user) => user.friendOf)
-    friend: Player
+    @ManyToOne(() => User, (user) => user.friendOf)
+    friend: User
 
     @Column()
     isPending: boolean

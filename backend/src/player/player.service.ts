@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Player } from 'src/typeorm/user.entity'
-import { CreatePlayerDto } from './dto/create-user.dto'
+import { User } from 'src/typeorm/user.entity'
+import { CreateUserDto } from './dto/create-user.dto'
 import { Repository } from 'typeorm'
-import { UpdatePlayerDto } from './dto/update-user.dto'
+import { UpdateUserDto } from './dto/update-user.dto'
 
 @Injectable()
-export class PlayerService {
+export class UserService {
     constructor(
-        @InjectRepository(Player)
-        private readonly userRepository: Repository<Player>
+        @InjectRepository(User)
+        private readonly userRepository: Repository<User>
     ) {}
-    create(createPlayerDto: CreatePlayerDto) {
-        const user = this.userRepository.create(createPlayerDto)
+    create(createUserDto: CreateUserDto) {
+        const user = this.userRepository.create(createUserDto)
         return this.userRepository.save(user)
     }
 
@@ -24,9 +24,9 @@ export class PlayerService {
         return this.userRepository.findOneBy({ id: id })
     }
 
-    async update(id: number, updatePlayerDto: UpdatePlayerDto) {
+    async update(id: number, updateUserDto: UpdateUserDto) {
         const user = await this.findOne(id)
-        return this.userRepository.save({ ...user, ...updatePlayerDto })
+        return this.userRepository.save({ ...user, ...updateUserDto })
     }
 
     async remove(id: number) {

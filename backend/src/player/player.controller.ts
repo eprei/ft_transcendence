@@ -13,21 +13,21 @@ import {
     BadRequestException,
     Res,
 } from '@nestjs/common'
-import { PlayerService } from './user.service'
-import { CreatePlayerDto } from './dto/create-user.dto'
+import { UserService } from './user.service'
+import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateChannelDto } from 'src/channel/dto/update-channel.dto'
 import { Express } from 'express'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
 
 @Controller('user')
-export class PlayerController {
-    constructor(private readonly userService: PlayerService) {}
+export class UserController {
+    constructor(private readonly userService: UserService) {}
 
     @Post()
     @UsePipes(ValidationPipe)
-    async create(@Body() createPlayerDto: CreatePlayerDto) {
-        const user = await this.userService.create(createPlayerDto)
+    async create(@Body() createUserDto: CreateUserDto) {
+        const user = await this.userService.create(createUserDto)
         return user
     }
 
