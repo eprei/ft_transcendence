@@ -3,9 +3,9 @@ import { FriendService } from './friend.service'
 import { FriendController } from './friend.controller'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Friend } from 'src/typeorm/friend.entity'
-import { PlayerModule } from 'src/player/player.module'
-import { Player } from 'src/typeorm/player.entity'
-import { PlayerService } from 'src/player/player.service'
+import { PlayerModule } from 'src/user/user.module'
+import { Player } from 'src/typeorm/user.entity'
+import { PlayerService } from 'src/user/user.service'
 
 @Module({
     imports: [TypeOrmModule.forFeature([Friend, Player]), PlayerModule],

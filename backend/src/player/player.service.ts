@@ -1,36 +1,36 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Player } from 'src/typeorm/player.entity'
-import { CreatePlayerDto } from './dto/create-player.dto'
+import { Player } from 'src/typeorm/user.entity'
+import { CreatePlayerDto } from './dto/create-user.dto'
 import { Repository } from 'typeorm'
-import { UpdatePlayerDto } from './dto/update-player.dto'
+import { UpdatePlayerDto } from './dto/update-user.dto'
 
 @Injectable()
 export class PlayerService {
     constructor(
         @InjectRepository(Player)
-        private readonly playerRepository: Repository<Player>
+        private readonly userRepository: Repository<Player>
     ) {}
     create(createPlayerDto: CreatePlayerDto) {
-        const player = this.playerRepository.create(createPlayerDto)
-        return this.playerRepository.save(player)
+        const user = this.userRepository.create(createPlayerDto)
+        return this.userRepository.save(user)
     }
 
     findAll() {
-        return this.playerRepository.find()
+        return this.userRepository.find()
     }
 
     findOne(id: number) {
-        return this.playerRepository.findOneBy({ id: id })
+        return this.userRepository.findOneBy({ id: id })
     }
 
     async update(id: number, updatePlayerDto: UpdatePlayerDto) {
-        const player = await this.findOne(id)
-        return this.playerRepository.save({ ...player, ...updatePlayerDto })
+        const user = await this.findOne(id)
+        return this.userRepository.save({ ...user, ...updatePlayerDto })
     }
 
     async remove(id: number) {
-        const player = await this.findOne(id)
-        return this.playerRepository.remove(player)
+        const user = await this.findOne(id)
+        return this.userRepository.remove(user)
     }
 }
