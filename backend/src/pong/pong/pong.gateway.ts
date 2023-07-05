@@ -6,7 +6,7 @@ import {
     OnGatewayDisconnect,
 } from '@nestjs/websockets'
 
-@WebSocketGateway({ path: '/pong' })
+@WebSocketGateway({ path: '/a', cors: true })
 export class PongGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @WebSocketServer() server
     users: number = 0
