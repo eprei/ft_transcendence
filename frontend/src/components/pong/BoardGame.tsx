@@ -1,6 +1,32 @@
 import styles from './BoardGame.module.css'
 import { useState, useEffect } from 'react'
 
+interface Position {
+    x: number
+    y: number
+}
+
+interface Size {
+    width: number
+    heigth: number
+}
+
+interface Paddle {
+	size: Size
+	position: Position
+}
+
+interface Ball {
+	size: number
+	position: Position
+}
+
+interface Pong {
+	paddleLeft: Paddle
+	paddleRigth: Paddle
+	ball: Ball
+}
+
 function drawRectangle(ctx: CanvasRenderingContext2D, rectangle): void {
     ctx.fillStyle = 'white'
     ctx.fillRect(
@@ -16,8 +42,8 @@ const BoardGame = () => {
     const PADDLE_HEIGHT: number = 50
     const BALL_SIZE: number = 10
 
-    const [frame, setFrame] = useState({
-        paddle1: {
+    const [frame, setFrame] = useState<Pong>({
+        paddleLeft: {
             position: {
                 x: 10,
                 y: 20,
@@ -27,7 +53,7 @@ const BoardGame = () => {
                 height: PADDLE_HEIGHT,
             },
         },
-        paddle2: {
+        paddleRigth: {
             position: {
                 x: 280,
                 y: 20,
