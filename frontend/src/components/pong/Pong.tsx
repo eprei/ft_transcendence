@@ -6,13 +6,28 @@ interface Position {
     y: number
 }
 
-interface Frame {
+interface Size {
+    width: number
+    height: number
+}
+
+interface Paddle {
     position: Position
+    size: Size
+}
+
+interface Frame {
+    paddle: Paddle
 }
 
 const Pong = () => {
     const socket = io('http://localhost:8080')
-    const [frame, setFrame] = useState<Frame>({ position: { x: 10, y: 30 } })
+    const [frame, setFrame] = useState<Frame>({
+        paddle: {
+            size: { width: 9, height: 16 },
+            position: { x: 144, y: 400 },
+        },
+    })
 
     useEffect(() => {
         socket.emit('getFrame', { id: 50 }, (response: Frame) => {

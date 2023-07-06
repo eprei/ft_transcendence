@@ -12,8 +12,18 @@ interface Position {
     y: number
 }
 
-interface Frame {
+interface Size {
+    width: number
+    height: number
+}
+
+interface Paddle {
     position: Position
+    size: Size
+}
+
+interface Frame {
+    paddle: Paddle
 }
 
 @WebSocketGateway({
@@ -32,7 +42,12 @@ export class PongGateway {
     @SubscribeMessage('getFrame')
     myGetFrame(@MessageBody() id: number) {
         console.log('coucou')
-        let frame: Frame = { position: { x: 12, y: 24 } }
+        let frame: Frame = {
+            paddle: {
+                size: { width: 3, height: 4 },
+                position: { x: 12, y: 24 },
+            },
+        }
         return frame
     }
 
