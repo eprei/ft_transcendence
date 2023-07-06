@@ -7,6 +7,11 @@ import { PongService } from './pong.service'
 import { CreatePongDto } from './dto/create-pong.dto'
 import { UpdatePongDto } from './dto/update-pong.dto'
 
+interface Frame {
+    x: number
+    y: number
+}
+
 @WebSocketGateway({
     cors: {
         origin: '*',
@@ -18,6 +23,13 @@ export class PongGateway {
     @SubscribeMessage('createPong')
     create(@MessageBody() createPongDto: CreatePongDto) {
         return this.pongService.create(createPongDto)
+    }
+
+    @SubscribeMessage('getFrame')
+    myGetFrame(@MessageBody() id: number) {
+        console.log('coucou')
+        let frame: Frame = { x: 12, y: 24 }
+        return frame
     }
 
     @SubscribeMessage('findAllPong')
