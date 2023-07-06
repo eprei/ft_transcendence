@@ -7,9 +7,13 @@ import { PongService } from './pong.service'
 import { CreatePongDto } from './dto/create-pong.dto'
 import { UpdatePongDto } from './dto/update-pong.dto'
 
-interface Frame {
+interface Position {
     x: number
     y: number
+}
+
+interface Frame {
+    position: Position
 }
 
 @WebSocketGateway({
@@ -28,7 +32,7 @@ export class PongGateway {
     @SubscribeMessage('getFrame')
     myGetFrame(@MessageBody() id: number) {
         console.log('coucou')
-        let frame: Frame = { x: 12, y: 24 }
+        let frame: Frame = { position: { x: 12, y: 24 } }
         return frame
     }
 
