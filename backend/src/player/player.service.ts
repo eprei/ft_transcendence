@@ -24,6 +24,37 @@ export class PlayerService {
         return `This action returns a #${id} player`
     }
 
+	
+	// async deleteUserFromChat(chanId: number, userName: string) {
+	// 	let res = await this.ChatUserRepository.findOne({ where: { chatId: chanId, userName: userName } });
+	// 	if (res) await this.ChatUserRepository.remove(res);
+	// }
+
+	// async findChan(playerId: string, chanId: number): Promise<Player> {
+	async findChannnels(playerId: string) {
+		let res = await this.playerRepository.findOne({ where: { playerId: playerId } });
+	}
+
+// 	async getChanById(id: number) {
+// 		let res = await this.playerRepository.findOneBy({
+// 		  id: id,
+// 		});
+// 		return res;
+// 	  }
+
+// 	  async getchanByPlayerId(id: number) {
+//     let res = await this.playerRepository.findOneBy({
+//       id: id,
+//     });
+//     return res.channelUser.;
+//   }
+	// return this.playerRepository.findOne(playerId, options);
+
+
+
+	// const player = await this.playerService.findChannels(playerId, { relations: ['channel-user'] });
+	// this.playerService.findOne(playerId, { relations: ['channel-user'] });
+
     async remove(login: string) {
         const player = await this.playerRepository.delete({ login: login })
         return player

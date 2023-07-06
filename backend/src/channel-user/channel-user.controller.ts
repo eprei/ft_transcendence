@@ -23,7 +23,7 @@ export class ChannelUserController {
     async create(@Body() createChannelUserDto: CreateChannelUserDto) {
         console.log(createChannelUserDto)
         try {
-            const channelUser = await this.channelUserService.create(
+             const channelUser = await this.channelUserService.create(
                 createChannelUserDto
             )
             return channelUser

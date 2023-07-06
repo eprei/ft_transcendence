@@ -8,10 +8,12 @@ export class ChannelUser {
     @PrimaryGeneratedColumn()
     id: number
 
-    @ManyToOne(() => Player, (player) => Player)
+	// @JoinColumn()
+    @ManyToOne(() => Player, (player) => Player, { onDelete: 'CASCADE' })
     player: Player
 
-    @ManyToOne(() => Channel, (channel) => Channel)
+	// @JoinColumn()
+    @ManyToOne(() => Channel, (channel) => Channel, { onDelete: 'CASCADE' })
     channel: Channel
 
     @Column()

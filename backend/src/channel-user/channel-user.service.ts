@@ -34,13 +34,26 @@ export class ChannelUserService {
         return this.channelUserRepository.find()
     }
 
-    findOne(id: number) {}
+     // findOne(id: number) {}
+}
+}
 
-    findOneByChannelAndPlayer(ch_id: number, pl_id: number) {
+
+
+    findOneByChannelAndPlayer(ch_id: number, pl_id: number) :ChannelUser {
         return this.channelUserRepository.findOne({
             where: { channel: { id: ch_id }, player: { id: pl_id } },
         })
     }
+
+	
+
+// 	async getchanByPlayerId(id: number) {
+//     let res = await this.channelUserRepository.findOneBy({
+//       id: id,
+//     });
+//     return res.channelUser.;
+//   }
 
     update(id: number, updateChannelUserDto: UpdateChannelUserDto) {
         return `This action updates a #${id} channelUser`

@@ -7,6 +7,7 @@ import {
     Delete,
     UsePipes,
     ValidationPipe,
+	NotFoundException
 } from '@nestjs/common'
 import { PlayerService } from './player.service'
 import { CreatePlayerDto } from './dto/create-player.dto'
@@ -33,6 +34,21 @@ export class PlayerController {
     findOne(@Param('id') id: string) {
         return this.playerService.findOne(+id)
     }
+
+	@Get(':playerId/channels/count')
+	async countPlayerChannels(@Param('playerId') playerId: string) {
+	  const player = await this.playerService.findChannels(playerId);
+  
+	  if (!player) {
+		throw new NotFoundException('Player not found');
+	  }
+  
+	  const channelCount = player.channelUsers.length;
+  
+	  return { channelCount };
+	}
+  }
+
 
     @Delete(':login')
     remove(@Param('login') login: string) {
