@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+    webserv:
+        image: nginx
+        ports:
+            - '80:80'

@@ -13,6 +13,12 @@ start: env
 stop:
 	docker compose down
 
+start-prod: env
+	docker compose -f docker-compose-prod.yml up
+
+stop-prod:
+	docker compose -f docker-compose-prod.yml down
+
 build:
 	docker run \
 	--rm \
