@@ -70,7 +70,7 @@ function App() {
         async function getAuthStatus() {
             try {
                 const response = await fetch(
-                    'http://localhost:8080/api/auth/status',
+                    'http://localhost/api/auth/status',
                     { credentials: 'include' }
                 )
                 const data = await response.json()

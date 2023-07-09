@@ -89,7 +89,7 @@ export class UserController {
             throw new BadRequestException('File is not an image')
         }
         const response = {
-            filePath: `http://localhost:8080/api/user/picture/${file.filename}`,
+            filePath: `http://localhost/api/user/picture/${file.filename}`,
         }
 
         return response

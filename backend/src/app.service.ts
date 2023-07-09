@@ -21,32 +21,32 @@ export class AppService {
         //  create Users
         const user1 = this.userRepo.create({
             nickname: 'user1',
-            avatarUrl: 'http://localhost:8080/api/user/picture/user1.webp',
+            avatarUrl: 'http://localhost/api/user/picture/user1.webp',
         })
         await this.userRepo.save(user1)
         const user2 = this.userRepo.create({
             nickname: 'user2',
-            avatarUrl: 'http://localhost:8080/api/user/picture/user2.webp',
+            avatarUrl: 'http://localhost/api/user/picture/user2.webp',
         })
         await this.userRepo.save(user2)
         const user3 = this.userRepo.create({
             nickname: 'user3',
-            avatarUrl: 'http://localhost:8080/api/user/picture/user3.webp',
+            avatarUrl: 'http://localhost/api/user/picture/user3.webp',
         })
         await this.userRepo.save(user3)
         const user4 = this.userRepo.create({
             nickname: 'user4',
-            avatarUrl: 'http://localhost:8080/api/user/picture/user4.webp',
+            avatarUrl: 'http://localhost/api/user/picture/user4.webp',
         })
         await this.userRepo.save(user4)
         const user5 = this.userRepo.create({
             nickname: 'user5',
-            avatarUrl: 'http://localhost:8080/api/user/picture/user5.webp',
+            avatarUrl: 'http://localhost/api/user/picture/user5.webp',
         })
         await this.userRepo.save(user5)
         const user6 = this.userRepo.create({
             nickname: 'user6',
-            avatarUrl: 'http://localhost:8080/api/user/picture/user6.webp',
+            avatarUrl: 'http://localhost/api/user/picture/user6.webp',
         })
         await this.userRepo.save(user6)
 
