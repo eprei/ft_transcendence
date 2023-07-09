@@ -2,6 +2,11 @@ version: '3.8'
 
 services:
     webserv:
-        image: nginx
+        container_name: our-nginx
+        image: our-nginx-image
+        build:
+            context: ./nginx/
         ports:
             - '80:80'
+        volumes:
+            - ./frontend/dist/:/var/www/cosmic-pong
