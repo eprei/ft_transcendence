@@ -10,6 +10,8 @@ services:
             - '80:80'
         volumes:
             - ./frontend/dist/:/var/www/cosmic-pong
+        networks:
+            - appnet
 
     postgres:
         container_name: our-prod-postgresql
