@@ -11,7 +11,7 @@ services:
         volumes:
             - ./frontend/dist/:/var/www/cosmic-pong
         networks:
-            - appnet
+            - prod-appnet
 
     postgres:
         container_name: our-prod-postgresql
@@ -21,7 +21,7 @@ services:
         env_file:
             - './env/postgres.env'
         networks:
-            - appnet
+            - prod-appnet
 
     backend:
         container_name: our-prod-backend
@@ -36,7 +36,7 @@ services:
         env_file:
             - ./env/nest.env
         networks:
-            - appnet
+            - prod-appnet
         command: node /app/dist/main
 
 volumes:
@@ -44,4 +44,4 @@ volumes:
       name: our-prod-volume
 
 networks:
-    appnet:
+    prod-appnet:
