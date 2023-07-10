@@ -17,13 +17,13 @@ interface Size {
     height: number
 }
 
-interface Paddle {
+interface Rectangle {
     position: Position
     size: Size
 }
 
 interface Frame {
-    paddle: Paddle
+    paddle: Rectangle
 }
 
 @WebSocketGateway({
