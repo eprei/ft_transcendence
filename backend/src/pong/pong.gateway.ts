@@ -23,7 +23,9 @@ interface Rectangle {
 }
 
 interface Frame {
-    paddle: Rectangle
+    paddleLeft: Rectangle
+    paddleRight: Rectangle
+    ball: Rectangle
 }
 
 @WebSocketGateway({
@@ -43,9 +45,17 @@ export class PongGateway {
     myGetFrame(@MessageBody() id: number) {
         console.log('coucou')
         let frame: Frame = {
-            paddle: {
+            paddleLeft: {
                 size: { width: 3, height: 4 },
                 position: { x: 12, y: 24 },
+            },
+            paddleRight: {
+                size: { width: 13, height: 14 },
+                position: { x: 12, y: 24 },
+            },
+            ball: {
+                size: { width: 10, height: 20 },
+                position: { x: 5, y: 5 },
             },
         }
         return frame
