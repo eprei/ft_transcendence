@@ -11,21 +11,31 @@ interface Size {
     height: number
 }
 
-interface Paddle {
+interface Rectangle {
     position: Position
     size: Size
 }
 
 interface Frame {
-    paddle: Paddle
+    paddleLeft: Rectangle
+    paddleRight: Rectangle
+    ball: Rectangle
 }
 
 const Pong = () => {
     const socket = io('http://localhost:8080')
     const [frame, setFrame] = useState<Frame>({
-        paddle: {
-            size: { width: 9, height: 16 },
-            position: { x: 144, y: 400 },
+        paddleLeft: {
+            size: { width: 3, height: 4 },
+            position: { x: 12, y: 24 },
+        },
+        paddleRight: {
+            size: { width: 13, height: 14 },
+            position: { x: 12, y: 24 },
+        },
+        ball: {
+            size: { width: 10, height: 20 },
+            position: { x: 5, y: 5 },
         },
     })
 
