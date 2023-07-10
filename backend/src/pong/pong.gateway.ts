@@ -43,19 +43,40 @@ export class PongGateway {
 
     @SubscribeMessage('getFrame')
     myGetFrame(@MessageBody() id: number) {
+        const PADDLE_WIDTH: number = 10
+        const PADDLE_HEIGHT: number = 50
+        const BALL_SIZE: number = 10
         console.log('coucou')
         let frame: Frame = {
             paddleLeft: {
-                size: { width: 3, height: 4 },
-                position: { x: 12, y: 24 },
+                position: {
+                    x: 10,
+                    y: 20,
+                },
+                size: {
+                    width: PADDLE_WIDTH,
+                    height: PADDLE_HEIGHT,
+                },
             },
             paddleRight: {
-                size: { width: 13, height: 14 },
-                position: { x: 12, y: 24 },
+                position: {
+                    x: 280,
+                    y: 20,
+                },
+                size: {
+                    width: PADDLE_WIDTH,
+                    height: PADDLE_HEIGHT,
+                },
             },
             ball: {
-                size: { width: 10, height: 20 },
-                position: { x: 5, y: 5 },
+                position: {
+                    x: 50,
+                    y: 50,
+                },
+                size: {
+                    width: BALL_SIZE,
+                    height: BALL_SIZE,
+                },
             },
         }
         return frame
