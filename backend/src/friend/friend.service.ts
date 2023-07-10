@@ -5,20 +5,24 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Friend } from 'src/typeorm/friend.entity'
 import { UserService } from 'src/user/user.service'
+import { User } from 'src/typeorm/user.entity'
+
 
 @Injectable()
 export class FriendService {
     constructor(
-        @InjectRepository(Friend)
-        private readonly friendRepository: Repository<Friend>,
-        private readonly userService: UserService
+		@InjectRepository(Friend)
+		private readonly friendRepository: Repository<Friend>,
+		@InjectRepository(User)
+		private readonly userService: Repository<User>,
     ) {}
 
     async create(createFriendDto: CreateFriendDto) {
         const { friendId, isPending } = createFriendDto
 
         const friend = new Friend()
-        friend.friend = await this.userService.findOne(friendId)
+        friend.friend = await this.userService.findOneBy({ id: friendId })
+
         friend.isPending = isPending
 
         return this.friendRepository.save(friend)
@@ -53,4 +57,12 @@ export class FriendService {
 
         return this.friendRepository.remove(friend)
     }
+
+	async getAllFriendsByUserId(userId: number): Promise<User[]> {
+		const friends = await this.friendRepository.find({
+		  where: { user: { id: userId } },
+		  relations: ['friend'],
+		});
+		return friends.map(friend => friend.friend);
+	  }
 }

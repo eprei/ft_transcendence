@@ -104,16 +104,13 @@ export class UserController {
         res.sendFile(filename, { root: './uploads' })
     }
 
-    @Get('me')
-    async getUser(@Request() req: any) {
-        const user = await this.userService.findOne(req.user.id)
-        if (!user) {
-            throw new NotFoundException('User not found')
-        }
-        const { id, TFASecret, FT_id, ...rest } = user
-        const userPosition = await this.userService.getUserRankingPosition(
-            req.user.id
-        )
-        return { ...rest, userPosition }
+    @Get('getmyinfo')
+    async getMyInfo(@Request() req: any) {
+        return await this.userService.getMyInfo(req)
     }
+
+	@Get('getmyfriends')
+	async getMyFriends(@Request() req: any) {
+        return await this.userService.getMyFriends(req)
+	}
 }

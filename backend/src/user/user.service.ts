@@ -1,15 +1,17 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
+import { Injectable, NotFoundException, Request } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { User } from 'src/typeorm/user.entity'
 import { CreateUserDto } from './dto/create-user.dto'
 import { Repository } from 'typeorm'
 import { UpdateUserDto } from './dto/update-user.dto'
+import { FriendService } from 'src/friend/friend.service'
 
 @Injectable()
 export class UserService {
     constructor(
         @InjectRepository(User)
-        private readonly userRepository: Repository<User>
+        private readonly userRepository: Repository<User>,
+		private readonly friendService: FriendService,
     ) {}
     create(createUserDto: CreateUserDto) {
         const user = this.userRepository.create(createUserDto)
@@ -86,4 +88,30 @@ export class UserService {
         }
         throw new Error(`User with id ${userID} not found`)
     }
+	async getMyInfo(@Request() req: any) {
+        const user = await this.findOne(req.user.id)
+
+        if (!user) {
+            throw new NotFoundException('User not found')
+        }
+
+        const { id, TFASecret, FT_id, ...rest } = user
+
+        const userPosition = await this.getUserRankingPosition(
+            req.user.id
+        )
+
+        return { ...rest, userPosition }
+    }
+
+	async getMyFriends(@Request() req: any): Promise<User[]> {
+		const user = await this.findOne(req.user.id);
+
+		if (!user) {
+		  throw new NotFoundException('User not found');
+		}
+
+		return this.friendService.getAllFriendsByUserId(user.id);
+	  }
+
 }
