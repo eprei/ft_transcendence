@@ -4,7 +4,7 @@ import MainProfile, { loader as ProfileLoader } from './pages/MainProfile'
 import MatchHistory from './pages/MatchHistory'
 import GameLauncher from './pages/GameLauncher'
 import Game from './pages/Game'
-import Chat from './pages/Chat'
+import Chat, { loader as ChatLoader } from './pages/Chat'
 import RootLayout from './RootLayout'
 import ErrorPage from './components/error/Error'
 import ProtectedRoute from './ProtectedRoute'
@@ -62,17 +62,7 @@ const router = createBrowserRouter([
                         <Chat />
                     </ProtectedRoute>
                 ),
-                loader: async () => {
-                    const response = await fetch(
-                        'http://localhost:8080/api/channel/user-channels/2'
-                    )
-                    if (!response.ok) {
-                        throw new Error(response.statusText)
-                    }
-                    const channelsData = await response.json()
-                    console.log('channelsData: ', channelsData)
-                    return channelsData
-                },
+                loader: ChatLoader,
             },
             {
                 path: 'TFATurnOn',
