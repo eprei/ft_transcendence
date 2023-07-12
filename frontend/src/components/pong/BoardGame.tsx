@@ -30,10 +30,6 @@ function drawRectangle(
 }
 
 const BoardGame = () => {
-    const PADDLE_WIDTH: number = 10
-    const PADDLE_HEIGHT: number = 50
-    const BALL_SIZE: number = 10
-
     const [frame, setFrame] = useState<Frame>({
         paddleLeft: {
             size: { width: 20, height: 100 },
