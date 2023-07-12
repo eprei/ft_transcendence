@@ -4,7 +4,7 @@ import MainProfile, { loader as ProfileLoader } from './pages/MainProfile'
 import MatchHistory from './pages/MatchHistory'
 import GameLauncher from './pages/GameLauncher'
 import Game from './pages/Game'
-import Chat, { loader as ChatLoader } from './pages/Chat'
+import Chat from './pages/Chat'
 import RootLayout from './RootLayout'
 import ErrorPage from './components/error/Error'
 import ProtectedRoute from './ProtectedRoute'
@@ -62,7 +62,6 @@ const router = createBrowserRouter([
                         <Chat />
                     </ProtectedRoute>
                 ),
-                loader: ChatLoader,
             },
             {
                 path: 'TFATurnOn',

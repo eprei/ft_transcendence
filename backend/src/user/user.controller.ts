@@ -110,7 +110,7 @@ export class UserController {
         if (!user) {
             throw new NotFoundException('User not found')
         }
-        const { id, TFASecret, FT_id, ...rest } = user
+        const { TFASecret, FT_id, ...rest } = user
         const userPosition = await this.userService.getUserRankingPosition(
             req.user.id
         )
