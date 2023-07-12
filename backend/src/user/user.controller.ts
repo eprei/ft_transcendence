@@ -109,8 +109,8 @@ export class UserController {
         return await this.userService.getMyInfo(req)
     }
 
-	@Get('getmyfriends')
-	async getMyFriends(@Request() req: any) {
+    @Get('getmyfriends')
+    async getMyFriends(@Request() req: any) {
         return await this.userService.getMyFriends(req)
-	}
+    }
 }

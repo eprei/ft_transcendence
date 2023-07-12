@@ -7,9 +7,12 @@ import { UserModule } from 'src/user/user.module'
 import { User } from 'src/typeorm/user.entity'
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Friend, User]), forwardRef(() => UserModule)],
-	controllers: [FriendController],
-	providers: [FriendService],
-	exports: [FriendService],
-  })
-  export class FriendModule {}
+    imports: [
+        TypeOrmModule.forFeature([Friend, User]),
+        forwardRef(() => UserModule),
+    ],
+    controllers: [FriendController],
+    providers: [FriendService],
+    exports: [FriendService],
+})
+export class FriendModule {}
