@@ -111,7 +111,7 @@ function App() {
                     { credentials: 'include' }
                 )
                 const data = await response.json()
-                console.log('data received: ', data)
+                // console.log('data received: ', data)
                 if (data.status === 'success') {
                     dispatch(authActions.login())
                 } else {
