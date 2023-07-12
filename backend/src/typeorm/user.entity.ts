@@ -43,7 +43,7 @@ export class User {
     FT_id: string
 
     @OneToMany(() => Channel, (channel) => channel.admin)
-    owner: Channel[];
+    owner: Channel[]
 
     @ManyToMany(() => Channel, (channel) => channel.users)
     @JoinTable()

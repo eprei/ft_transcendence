@@ -14,7 +14,7 @@ import { Match } from './typeorm/match.entity'
 import { FriendModule } from './friend/friend.module'
 import { MatchModule } from './match/match.module'
 import { AuthModule } from './auth/auth.module'
-import { ChatModule } from './chat/chat.module';
+import { ChatModule } from './chat/chat.module'
 
 @Module({
     imports: [
