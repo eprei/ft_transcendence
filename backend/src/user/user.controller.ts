@@ -14,14 +14,18 @@ import {
     Res,
     Request,
     NotFoundException,
+	InternalServerErrorException
 } from '@nestjs/common'
 import { UserService } from './user.service'
 import { CreateUserDto } from './dto/create-user.dto'
 import { UpdateChannelDto } from 'src/channel/dto/update-channel.dto'
 import { Express } from 'express'
+import { ApiTags } from '@nestjs/swagger'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { diskStorage } from 'multer'
-import { ApiTags } from '@nestjs/swagger'
+import { v4 as uuidv4 } from 'uuid'
+import { extname } from 'path'
+import * as fs from 'fs'
 
 @ApiTags('user')
 @Controller('user')
@@ -121,4 +125,49 @@ export class UserController {
     async getLambda(@Param('nickname') nickname: string) {
         return await this.userService.getLambdaInfo(nickname)
     }
+
+	@Post('upload-profile-picture')
+	@UseInterceptors(
+	  FileInterceptor('profilePicture', {
+		storage: diskStorage({
+		  destination: './uploads/tmp-profil-pictures-storage', // Path where profile pictures will be temporary saved
+		  filename: (req, file, cb) => {
+			const uniqueSuffix = uuidv4() // A unique suffix is used to avoid naming conflicts
+			const fileExt = extname(file.originalname)
+			cb(null, `${Date.now()}-${uniqueSuffix}${fileExt}`)
+		  },
+		}),
+	  }),
+	)
+	async uploadProfilePicture(@UploadedFile() file: Express.Multer.File) {
+		if (!file) {
+		  // Error handling if no file is provided
+		  throw new BadRequestException('No image was provided')
+		}
+
+		// Destination path in the 'profile-images' volume
+		const destinationPath = '/app/profile-images'
+
+		// Generate a unique name for the file in the volume 'profile-images'
+		const uniqueFilename = `${uuidv4()}${extname(file.originalname)}`
+
+		try {
+		  // Read temporary file
+		  const fileData = fs.readFileSync(file.path)
+
+		  // Write the file to the path of the volume 'profile-images'.
+		  fs.writeFileSync(`${destinationPath}/${uniqueFilename}`, fileData)
+
+		  // Delete temporary file
+		  fs.unlinkSync(file.path)
+
+		  // Rest of the logic...
+
+		  return { message: 'Profile image saved correctly' }
+		} catch (error) {
+		  // Error handling if a problem occurs while reading, writing or deleting the file
+		  console.error('Error when moving profile image:', error)
+		  throw new InternalServerErrorException('An error occurred when saving the profile image')
+		}
+	  }
 }
