@@ -25,13 +25,17 @@ prod-build:
 prod-clean-database:
 	@docker volume rm our-prod-volume || true
 
-build:
+build: build-front build-back
+
+build-front:
 	docker run \
 	--rm \
 	--name front_build \
 	--volume $(shell pwd)/frontend:/app \
 	our-frontend-image \
 	npm run build
+
+build-back:
 	docker run \
 	--rm \
 	--name back_build \
