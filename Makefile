@@ -22,6 +22,9 @@ prod-stop:
 prod-build:
 	docker compose -f docker-compose-prod.yml build
 
+prod-clean-database:
+	@docker volume rm our-prod-volume || true
+
 build:
 	docker run \
 	--rm \
