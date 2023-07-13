@@ -29,7 +29,7 @@ export class AuthController {
     loginRedirect(@Req() req, @Res() res) {
         console.log('Passport User: ', req.user)
         console.log('Session: ', req.session)
-        res.redirect('http://localhost:4040/profile')
+        res.redirect('http://localhost/profile')
 
         return req.user
     }

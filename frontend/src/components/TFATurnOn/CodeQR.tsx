@@ -1,5 +1,3 @@
-import styles from './CodeQR.module.css'
-
 import { useEffect, useState } from 'react'
 
 const CodeQR = () => {
@@ -10,7 +8,7 @@ const CodeQR = () => {
         const fetchQRCode = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:8080/api/auth/2fa/generate`,
+                    `http://localhost/api/auth/2fa/generate`,
                     {
                         method: 'GET',
                         credentials: 'include',

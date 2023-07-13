@@ -19,7 +19,7 @@ const UserInformation = () => {
         if (TFAEnabled) {
             try {
                 const response = await fetch(
-                    'http://localhost:8080/api/auth/2fa/turn-off',
+                    'http://localhost/api/auth/2fa/turn-off',
                     {
                         method: 'POST',
                         credentials: 'include',
@@ -33,7 +33,7 @@ const UserInformation = () => {
                 console.error('Error turning off 2FA:', error)
             }
         } else {
-            window.location.href = 'http://localhost:4040/TFATurnOn'
+            window.location.href = 'http://localhost/TFATurnOn'
         }
     }
 
